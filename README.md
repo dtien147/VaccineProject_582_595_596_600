@@ -3,10 +3,10 @@
 **Vaccine Reminder** là một đồ án của môn UDPT.
 
 Thành viên:
-**1312582 - Bùi Phạm Thiên Thư**
-**1312595 - Trịnh Xuân Tiến**
-**1312596 - Dương Tiễn**
-**1312600 - Nguyễn H* [ ]àng Tín**
+1312582 - Bùi Phạm Thiên Thư
+1312595 - Trịnh Xuân Tiến
+1312596 - Dương Tiễn
+1312600 - Nguyễn Hoàng Tín
 
 URL: **...**
 
