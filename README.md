@@ -16,7 +16,7 @@ URL: **...**
 
 ## Chức năng
 
-Chức năng **Bắt buộc**:
+Chức năng **bắt buộc**:
 * [ ] Đăng ký
     * [ ] Email
     * [ ] Số điện thoại
@@ -27,7 +27,6 @@ Chức năng **Bắt buộc**:
     * [ ] Facebook
 * [ ] Phân quyền
     * [ ] Phụ huynh
-    * [ ] Bác sĩ
     * [ ] Quản lý
 * [ ] Chức năng của phụ huynh
     * [ ] Quản lý trẻ
@@ -36,17 +35,14 @@ Chức năng **Bắt buộc**:
         * [ ] Sửa thông tin trẻ
         * [ ] Xem thông tin trẻ
     * [ ] Xem lịch tiêm phòng của các trẻ đã thêm
-    * [ ] Nhận nhắc nhở tiêm phòng cho các trẻ đã thêm qua:
-        * [ ] Email
-        * [ ] ĐT
-    * [ ] Hỏi/đáp với bác sĩ
+    * [ ] Nhận nhắc nhở tiêm phòng cho các trẻ đã thêm qua Email
     * [ ] Thiết lập thời gian nhắc nhở
 * [ ] Chức năng của quản lý
     * [ ] Thêm vaccine
     * [ ] Phát sinh lịch tiêm phòng
 
 
-Chức năng **Nâng cao* [ ]**:
+Chức năng **nâng cao* [ ]**:
 * [ ] Phân quyền
     * [ ] Bác sĩ
 * [ ] Chức năng của bác sĩ
@@ -55,3 +51,4 @@ Chức năng **Nâng cao* [ ]**:
 * [ ] Chức năng của phụ huynh
     * [ ] Hỏi/đáp với bác sĩ
     * [ ] Xem thông tin vaccine.
+    * [ ] Nhận nhắc nhở tiêm phòng cho các trẻ đã thêm qua tin nhắn điện thoại
