@@ -35,10 +35,11 @@ Chức năng **bắt buộc**:
         * [ ] Sửa thông tin trẻ
         * [ ] Xem thông tin trẻ
     * [ ] Xem lịch tiêm phòng của các trẻ đã thêm
+    * [ ] Đánh dấu các loại vaccine đã tiêm
     * [ ] Nhận nhắc nhở tiêm phòng cho các trẻ đã thêm qua Email
     * [ ] Thiết lập thời gian nhắc nhở
 * [ ] Chức năng của quản lý
-    * [ ] Thêm vaccine
+    * [ ] Thêm vaccine (Số mũi tiêm, giãn cách tiêm, thời gian tiêm, đối tượng tiêm)
     * [ ] Phát sinh lịch tiêm phòng
 
 
@@ -52,3 +53,5 @@ Chức năng **nâng cao* [ ]**:
     * [ ] Hỏi/đáp với bác sĩ
     * [ ] Xem thông tin vaccine.
     * [ ] Nhận nhắc nhở tiêm phòng cho các trẻ đã thêm qua tin nhắn điện thoại
+* [ ] Chức năng của quản lý
+    * [ ] Thêm thông tin vaccine (Thành phần, công dụng, tác dụng phụ)
