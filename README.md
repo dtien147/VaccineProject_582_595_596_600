@@ -46,29 +46,3 @@ Chức năng **Bắt buộc**:
 
 Chức năng **Nâng cao* [ ]**:
 * [ ] Xem thông tin vaccine.
-
-
-## Dem* [ ]
-
-Link ảnh GIF dem* [ ] ứng dụng:
-
-![Vide* [ ] Walkthr* [ ]ugh](dem* [ ]1.gif)
-
-Tạ* [ ] ảnh GIF với chương trình [LiceCap](http://www.c* [ ]ck* [ ]s.c* [ ]m/licecap/).
-
-
-## License
-
-  C* [ ]pyright [yyyy] [name * [ ]f c* [ ]pyright * [ ]wner]
-
-  Licensed under the Apache License, Versi* [ ]n 2.0 (the "License");
-  y* [ ]u may n* [ ]t use this file except in c* [ ]mpliance with the License.
-  Y* [ ]u may * [ ]btain a c* [ ]py * [ ]f the License at
-
-    http://www.apache.* [ ]rg/licenses/LICENSE-2.0
-
-  Unless required by applicable law * [ ]r agreed t* [ ] in writing, s* [ ]ftware
-  distributed under the License is distributed * [ ]n an "AS IS" BASIS,
-  WITH* [ ]UT WARRANTIES * [ ]R C* [ ]NDITI* [ ]NS * [ ]F ANY KIND, either express * [ ]r implied.
-  See the License f* [ ]r the specific language g* [ ]verning permissi* [ ]ns and
-  limitati* [ ]ns under the License.
