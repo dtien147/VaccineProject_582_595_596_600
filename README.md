@@ -1,4 +1,4 @@
-# UDPT-Pr* [ ]ject - **Vaccine Reminder**
+# UDPT-Project - **Vaccine Reminder**
 
 **Vaccine Reminder** là một đồ án của môn UDPT.
 
