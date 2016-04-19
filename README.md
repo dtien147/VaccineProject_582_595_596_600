@@ -41,12 +41,17 @@ Chức năng **Bắt buộc**:
         * [ ] ĐT
     * [ ] Hỏi/đáp với bác sĩ
     * [ ] Thiết lập thời gian nhắc nhở
-* [ ] Chức năng của bác sĩ
-    * [ ] Trả lời câu hỏi của phụ huynh
 * [ ] Chức năng của quản lý
     * [ ] Thêm vaccine
     * [ ] Phát sinh lịch tiêm phòng
 
 
 Chức năng **Nâng cao* [ ]**:
-* [ ] Xem thông tin vaccine.
+* [ ] Phân quyền
+    * [ ] Bác sĩ
+* [ ] Chức năng của bác sĩ
+    * [ ] Trả lời câu hỏi của phụ huynh
+    * [ ] Xem thông tin của trẻ với sự cho phép của phụ huynh
+* [ ] Chức năng của phụ huynh
+    * [ ] Hỏi/đáp với bác sĩ
+    * [ ] Xem thông tin vaccine.
