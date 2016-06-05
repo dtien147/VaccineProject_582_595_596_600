@@ -8,7 +8,9 @@ app.engine('ect', ectRenderer.render);
 var routes = require('./routes');
 app.use('/', routes);
 app.use(express.static('public'));
+app.use(express.static('bower_components'));
+
 
 app.listen(3000, function () {
-  console.log('now listening on http://localhost:3000');
+	console.log('now listening on http://localhost:3000');
 })
