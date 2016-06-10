@@ -1,17 +1,26 @@
 var express = require('express');
+var session = require('express-session')
 var app = express();
 var ect = require('ect');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 
 
 //===============EXPRESS================
 
+app.use(express.static('public'));
+app.use(express.static('bower_components'));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser()) 
+app.use(session({secret: 'keyboard cat'}))
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
 
 var ectRenderer = ect({ watch: true, root: __dirname + '/views', ext : '.ect' });
 app.set('view engine', 'ect');
@@ -33,8 +42,7 @@ var db = monk('localhost:27017/vaccine');
 app.use('/', require('./routes'));
 app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
-app.use(express.static('public'));
-app.use(express.static('bower_components'));
+
 
 
 //===============PORT=================
@@ -84,7 +92,11 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(email, cb) {
   var users = db.get('users');
   users.findOne({ email: email }, function (err, user) {
-    if (err) { return cb(err); }
+    if (err) { 
+      return cb(err);
+      console.log("Login error: Cannot find user");
+      }
+    console.log(user);
     cb(null, user);
   });
 });
