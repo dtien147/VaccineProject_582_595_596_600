@@ -20,8 +20,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
-
 var ectRenderer = ect({ watch: true, root: __dirname + '/views', ext : '.ect' });
 app.set('view engine', 'ect');
 app.engine('ect', ectRenderer.render);
@@ -34,14 +32,15 @@ app.use(function(req,res,next){
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/vaccine');
-//var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
+//var db = monk('localhost:27017/vaccine');
+var db = monk('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
 
 //===============ROUTES===============
 
 app.use('/', require('./routes'));
 app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
+app.use('/', require('./routes/parent'));
 
 
 
