@@ -1,0 +1,46 @@
+#sexBoy
+{
+	color: blue;
+}
+
+#sexGirl
+{
+	color: pink;
+}
+
+.field
+{
+	float:left;
+	margin-right: 10pt;
+}
+
+.field label
+{
+	padding: 5pt;
+}
+
+.info input, .info label
+{
+	margin: 5pt;
+}
+
+.info
+{
+	float:left;
+}
+
+.childrenList
+{
+	float:left;
+	width: 60%;
+}
+
+.children
+{
+	float: right;
+}
+
+ .addChild
+{
+	padding-top: 100pt;
+}
