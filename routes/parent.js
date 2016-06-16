@@ -1,18 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/parent', function(req, res) {
+router.get('/parent/:parentEmail', function(req, res) {
 	var db = req.db;
 	var children = db.get("children");
-	children.find({}, function(err, childrenList)
+	var email = req.params.parentEmail;
+	children.find({'parent-email': email}, function(err, childrenList)
 		{
 
 			if (err)
 			{
 				console.log(err);
+				res.render('parent.ect', {});
 			}
 
-			else
+			else if (childrenList!=null)
 			{
 				console.log(childrenList);
 				res.render('parent.ect',
@@ -20,12 +22,17 @@ router.get('/parent', function(req, res) {
 						children: childrenList
 					});
 			}
+			
+			else
+			{
+				res.render('parent.ect', {});
+			}
 		});
 
 });
 
 
-router.post('/parent:parentEmail', function(req, res) {
+router.post('/parent/:parentEmail', function(req, res) {
 	var db = req.db;
 	var children = db.get('children');	
 	var email = req.params.parentEmail;
@@ -34,25 +41,15 @@ router.post('/parent:parentEmail', function(req, res) {
 });
 
 
-
-router.post('/parent', function(req, res) {
-	var db = req.db;
-	var children = db.get('children');	
-
-	children.insert({'child_name': req.body.child_name, 'birthday': req.body.datepicker, 'gender': req.body.sex});
-
-	res.redirect('/parent');
-	
-});
-
-router.post('/parent/removechild/:childId', function(req, res) {
+router.post('/parent/:parentEmail/removechild/:childId', function(req, res) {
 	var ObjectID = require('mongodb').ObjectID;
 	var db = req.db;
 	var children = db.get('children');	
 	var id = req.params.childId;
 	var objId = new ObjectID (id);
+	var email = req.params.parentEmail;
 	
-	children.remove({'_id': objId}, function (err, result)
+	children.remove({'parent-email': email, '_id': objId}, function (err, result)
 		{
 			 if (err) {
                 console.log(err);
@@ -60,12 +57,11 @@ router.post('/parent/removechild/:childId', function(req, res) {
 			
 			else
 			{
-				console.log("hi");
+			
 				console.log(result);
 			}
 		});
 
-	res.redirect('/parent');
 	
 });
 
