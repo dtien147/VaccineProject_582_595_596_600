@@ -13,6 +13,12 @@ router.post('/login',  passport.authenticate('local', { failureRedirect: '/login
     console.log(req.user);
 });
 
+router.post('',  passport.authenticate('local', { failureRedirect: '' }),
+  function(req, res) {
+    res.redirect('/parent');
+    console.log(req.user);
+});
+
 
 
 module.exports = router;
