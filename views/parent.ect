@@ -19,15 +19,15 @@
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
-	  
+
 	</nav>
 	<div class = "childrenList">
 		<md-card-content>
            <% childLoader = (children) -> %>
-             
+
                 <md-item>
-          
-                    
+
+
                     <div class="list-group-item childrenList">
                       <a ><h4><%- children.child_name %></h4></a>
 					  <section flex layout="row" layout-align="end center" layout-wrap>
@@ -36,8 +36,8 @@
                     </section>
                     </div>
 					<span></span>
-                    
-                    
+
+
                 </md-item>
                <% end %>
 
@@ -51,37 +51,37 @@
 
 
 	<div class = "addChild">
-	<form  method = "post" action="/parent">
+	<form  method = "post" action="/parent/add_child">
 	<div class = "field">
 		<label > Child's name: </label><br/>
 		<label > Child's birthday: </label><br/>
 		<label > Child's gender: </label><br/>
-	</div>	
+	</div>
 	<div class = "info">
 		<input type = "text" id = "child_name" name="child_name">
-			
+
 		</input><br/>
-		
+
 		<input type = "text" id = "datepicker" name = "datepicker">
-			
+
 		</input><br/>
-		
+
 		<label id = "sexGirl" for = "girl">Girl</label>
 		<input type = "radio" name="sex" id = "girl" value="girl">
-			
+
 		</input>
 		<label id = "sexBoy" for = "boy">Boy</label>
 		<input type = "radio" name="sex" id = "boy" value="boy">
-			
+
 		</input>
 	</div><br/>
 	<button>Add</button>
 	</form>
 	</div>
 	</div>
-	
-	
-		
+
+
+
 
 </body>
 </html>
