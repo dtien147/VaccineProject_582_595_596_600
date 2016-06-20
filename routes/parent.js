@@ -70,6 +70,7 @@ router.post('/parent/remove_child/:childId', function(req, res) {
         var id = req.params.childId;
         var objId = new ObjectID(id);
         var email = req.params.parentEmail;
+        console.console.log(email);
         children.remove({
             'parent-email': email,
             '_id': objId
@@ -82,6 +83,19 @@ router.post('/parent/remove_child/:childId', function(req, res) {
             }
         });
     }
+});
+
+router.post('/parent/modify_child/:childId', function (req, res)
+{
+  if (req.user === undefined)
+  {
+    res.redirect('/login');
+  }
+  else {
+    {
+      res.redirect('/login');
+    }
+  }
 });
 
 module.exports = router;

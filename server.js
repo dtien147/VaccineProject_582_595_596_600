@@ -43,6 +43,7 @@ app.use('/', require('./routes'));
 app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
 app.use('/', require('./routes/parent'));
+app.use('/', require('./routes/child'));
 
 
 //===============PORT=================
