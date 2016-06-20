@@ -12,9 +12,9 @@ var Strategy = require('passport-local').Strategy;
 
 app.use(express.static('public'));
 app.use(express.static('bower_components'));
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser()) 
+app.use(cookieParser())
 app.use(session({secret: 'keyboard cat'}))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -36,7 +36,7 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/vaccine');
 //var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
-
+var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
 //===============ROUTES===============
 
 app.use('/', require('./routes'));
@@ -65,18 +65,18 @@ function(email, password, cb) {
   console.log(email);
   var users = db.get('users');
   users.findOne({ email: email }, function (err, user) {
-    if (err) { 
-      return cb(err); 
+    if (err) {
+      return cb(err);
       console.log("Khong ket noi CSDL");
     }
 
-    if (!user) { 
-      return cb(null, false); 
+    if (!user) {
+      return cb(null, false);
       console.log("Khong ton tai user");
     }
 
-    if (user['password'] != password) { 
-      return cb(null, false); 
+    if (user['password'] != password) {
+      return cb(null, false);
       console.log("Sai password");
     }
     console.log("Login thanh cong");
@@ -92,7 +92,7 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(email, cb) {
   var users = db.get('users');
   users.findOne({ email: email }, function (err, user) {
-    if (err) { 
+    if (err) {
       return cb(err);
       console.log("Login error: Cannot find user");
     }
