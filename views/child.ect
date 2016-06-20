@@ -2,51 +2,66 @@
 
 <html>
 <head>
-	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style/parent.css">
-	<link rel="stylesheet" type="text/css" href="jquery-ui/themes/smoothness/jquery-ui.min.css">
+	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../style/parent.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
 
-	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
-	
+	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../script/child.js"></script>
+	<script>
+ $(function() {
+ 	$( "#datepicker" ).datepicker();
+ });
+ </script>
 
 </head>
-<body>
+<body onload="loadGender ('<%- @gender %>')">
 <nav class="navbar navbar-inverse">
-	  
+
 </nav>
 <div>
 <h4>Child's information</h4><br/>
 <div >
+	<form  method = "post" action="/child/<%- @child_id %>">
 	<div class = "field">
 		<label > Child's name: </label><br/>
 		<label > Child's birthday: </label><br/>
 		<label > Child's gender: </label><br/>
 		<label> Vaccine: </label>
-	</div>	
+	</div>
 	<div class = "info">
-		<input type = "label" id = "child_name" name="child_name">
-			
+		<input type = "text" id = "child_name" name="child_name" value = "<%- @child_name %>" >
+
 		</input><br/>
-		
-		<input type = "label" id = "datepicker" name = "datepicker">
-			
+
+		<input type = "text" id = "datepicker" name = "datepicker" value = "<%- @birthday %>" >
+
 		</input><br/>
-		
-		<input type = "label" id = "gender" name = "gender">
-			
-		</input><br/>
+
+		<div>
+		<label id = "sexGirl" for = "girl">Girl</label>
+		<input type = "radio" name="sex" id = "girl" value="girl">
+
+		</input>
+		<label id = "sexBoy" for = "boy">Boy</label>
+		<input type = "radio" name="sex" id = "boy" value="boy">
+
+		</input>
+	</div>
 		<ul>
-		
+
 		</ul>
+
 	</div><br/>
-	<button>Add</button>
+	<button>Update</button>
+</form>
 	</div>
 	</div>
 </div>
-	
-		
+
+
 
 </body>
 </html>

@@ -25,7 +25,6 @@ router.get('/parent', function(req, res) {
                         console.log(err);
                         res.render('parent.ect', {});
                     } else if (childrenList !== null) {
-                        console.log(childrenList);
                         res.render('parent.ect', {
                             children: childrenList
                         });
@@ -69,33 +68,19 @@ router.post('/parent/remove_child/:childId', function(req, res) {
         var children = db.get('children');
         var id = req.params.childId;
         var objId = new ObjectID(id);
-        var email = req.params.parentEmail;
-        console.console.log(email);
+        var email = req.user['email'];
+        console.log(email);
+
         children.remove({
             'parent-email': email,
             '_id': objId
-        }, function(err, result) {
-            if (err) {
-                console.log(err);
-            } else {
-
-                console.log(result);
-            }
         });
+        res.redirect('/parent');
+
+
     }
 });
 
-router.post('/parent/modify_child/:childId', function (req, res)
-{
-  if (req.user === undefined)
-  {
-    res.redirect('/login');
-  }
-  else {
-    {
-      res.redirect('/login');
-    }
-  }
-});
+
 
 module.exports = router;

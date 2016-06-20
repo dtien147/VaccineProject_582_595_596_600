@@ -10,11 +10,12 @@ function removechild(id)
 	 $.post(link, data, function (res){
 
     });
+
+    location.reload(true);
 }
 
 function modifychild(id)
 {
-  var data;
-  var link = "./parent/modify_child/" + id;
-  $.post(link, data, function(res){});
+  location.href = "child/" + id;
+
 }
