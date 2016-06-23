@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
 //===============EXPRESS================
@@ -123,6 +124,46 @@ passport.use(new FacebookStrategy({
 
       return cb(null, new_user);
     }
+    return cb(null, user);
+    });
+  }
+));
+
+//Login: Google
+passport.use(new GoogleStrategy({
+    clientID: '922565830014-o4ocrqlilbou6g2dt4r5c1vr5lj611j7.apps.googleusercontent.com',
+    clientSecret: 'TVH8JAFhjqaJl1fWzZ9dkcty',
+    callbackURL: "http://localhost:3000/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    var users = db.get('users');
+    users.findOne({ id: profile.id }, function (err, user) {
+
+    if (err) {
+          return cb(err);
+          console.log("Khong ket noi CSDL");
+    }
+
+    if (!user) {
+      // Tao user moi
+
+      users.insert({
+          'id': profile.id,
+          'name': profile.displayName,
+          'email': profile.emails[0].value
+      }, function(err, insertedDoc){
+
+      });
+
+      var new_user = {
+        id: profile.id,
+        name: profile.displayName,
+        email: profile.emails[0].value
+      }
+
+      return cb(null, new_user);
+    }
+
     return cb(null, user);
     });
   }
