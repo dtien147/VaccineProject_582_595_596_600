@@ -34,7 +34,7 @@ app.use(function(req,res,next){
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/vaccine');
+//var db = monk('localhost:27017/vaccine');
 //var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
 var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
 //===============ROUTES===============
