@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 router.get('/register', function(req, res) {
     res.render('register.ect', {});
@@ -23,9 +24,14 @@ router.post('/register', function(req, res) {
                     'email': req.body.email,
                     'name': req.body.name,
                     'password': req.body.password
+                }, function(err, insertedDoc) {
+                    if (insertedDoc != null) {
+                        passport.authenticate('local')(req, res, function() {
+                            res.send('/');
+                            console.log("Success");
+                        });
+                    }
                 });
-                res.send('/');
-                console.log("Success");
             } else {
                 res.send(false);
                 console.log("Name or password is empty");
