@@ -5,7 +5,8 @@ var ect = require('ect');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 
 //===============EXPRESS================
@@ -36,7 +37,9 @@ var mongo = require('mongodb');
 var monk = require('monk');
 //var db = monk('localhost:27017/vaccine');
 //var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
-var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
+//var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
+var db = monk ('mongodb://sa:123456@ds019960.mlab.com:19960/udpt');
+//mongodb://<dbuser>:<dbpassword>@ds019960.mlab.com:19960/udpt
 //===============ROUTES===============
 
 app.use('/', require('./routes'));
@@ -57,13 +60,13 @@ mongo ds023613.mlab.com:23613/vaccine -u sa -p 123456
 
 
 //==================PASSPORT==============
-passport.use(new Strategy({
+//Local login
+passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
   session: false
 },
 function(email, password, cb) {
-  console.log(email);
   var users = db.get('users');
   users.findOne({ email: email }, function (err, user) {
     if (err) {
@@ -85,6 +88,45 @@ function(email, password, cb) {
   });
 }));
 
+//Login: Facebook
+passport.use(new FacebookStrategy({
+    clientID: '115652165524930',
+    clientSecret: 'fccf4fc2fc8318f8332c124b385f3d19',
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+		profileFields: ['id', 'displayName', 'email'],
+    session: false
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    var users = db.get('users');
+    users.findOne({ id: profile.id }, function (err, user) {
+
+    if (err) {
+        return cb(err);
+        console.log("Khong ket noi CSDL");
+    }
+
+    if (!user) {
+      // Tao user moi
+      var newUser = profile._json;
+      users.insert({
+          'id': newUser.id,
+          'name': newUser.name,
+          'email': newUser.email
+      }, function(err, insertedDoc){
+
+      });
+      var new_user = {
+        id : newUser.id,
+        name: newUser.name,
+        email: newUser.email
+      }
+
+      return cb(null, new_user);
+    }
+    return cb(null, user);
+    });
+  }
+));
 
 passport.serializeUser(function(user, cb) {
   cb(null, user.email);
@@ -97,7 +139,7 @@ passport.deserializeUser(function(email, cb) {
       return cb(err);
       console.log("Login error: Cannot find user");
     }
-    console.log(user);
     cb(null, user);
   });
+
 });

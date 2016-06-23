@@ -27,6 +27,8 @@
     "mongodb": "~1.4.0",
     "monk": "~1.0.1",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google": "^0.3.0",
     "passport-local": "^1.0.0"
   }
 }
