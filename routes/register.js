@@ -18,7 +18,6 @@ router.post('/register', function(req, res) {
             } else if (result != null) {
                 res.send(false);
                 console.log("User exists");
-                console.log(result);
             } else if (req.body.name != '' && req.body.password != '') {
                 users.insert({
                     'email': req.body.email,
@@ -27,6 +26,9 @@ router.post('/register', function(req, res) {
                 });
                 res.send('/');
                 console.log("Success");
+            } else {
+                res.send(false);
+                console.log("Name or password is empty");
             }
         });
     } else {
