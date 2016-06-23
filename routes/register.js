@@ -6,7 +6,7 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-  {
+    {
         var db = req.db;
         var users = db.get('users');
         users.findOne({
@@ -15,9 +15,7 @@ router.post('/register', function(req, res) {
             if (err) {
                 console.log(err);
             } else if (result != null) {
-                res.render('register.ect', {
-                    error: 'User exists'
-                });
+                res.send(false);
             } else {
                 users.insert({
                     'email': req.body.email,
@@ -25,7 +23,7 @@ router.post('/register', function(req, res) {
                     'last_name': req.body.last_name,
                     'password': req.body.password
                 });
-                  res.redirect('/login');
+                res.send('/');
             }
         });
 
