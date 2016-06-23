@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%- @title %></title>
-  </head>
-  <body>
-    <% content %>
-  </body>
-</html>
 
+<html>
+<head>
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style/register.css">
+
+	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="script/register.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    
+	    <ul class="nav navbar-nav">
+	      <li class="dropdown">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Children
+	        <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="#">New child</a></li>
+	          <li><a href="#">Remove child</a></li>
+	          <li><a href="#">Update information/a></li> 
+	        </ul>
+	      </li>
+	      <li><a href="#">Setttings</a></li> 
+	    </ul>
+	  </div>
+	</nav>
+		
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style/parent.css">
+	<link rel="stylesheet" type="text/css" href="jquery-ui/themes/smoothness/jquery-ui.min.css">
+
+	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="script/parent.js"></script>
+	 <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+
+	</nav>
+	<div class = "childrenList">
+		<md-card-content>
+           <% childLoader = (children) -> %>
+
+                <md-item>
+
+
+                    <div class="list-group-item childrenList">
+                      <a ><h4><%- children.child_name %></h4></a>
+					  <section flex layout="row" layout-align="end center" layout-wrap>
+                      <button id = "btnModifyChild" class="md-raised md-warn" onclick="modifychild('<%- children._id %>')">Modify</button>
+                      <button class="md-raised md-warn" onclick = "removechild('<%- children._id %>')">Remove</button>
+                    </section>
+                    </div>
+					<span></span>
+
+
+                </md-item>
+               <% end %>
+
+              <% if @children?.length : %>
+                <% for child in @children : %>
+                    <%- childLoader child %>
+                <% end %>
+              <% end %>
+            </md-card-content>
+	</div>
+
+
+	<div class = "addChild">
+	<form  method = "post" action="/parent/add_child">
+	<div class = "field">
+		<label > Child's name: </label><br/>
+		<label > Child's birthday: </label><br/>
+		<label > Child's gender: </label><br/>
+	</div>
+	<div class = "info">
+		<input type = "text" id = "child_name" name="child_name">
+
+		</input><br/>
+
+		<input type = "text" id = "datepicker" name = "datepicker">
+
+		</input><br/>
+
+		<label id = "sexGirl" for = "girl">Girl</label>
+		<input type = "radio" name="sex" id = "girl" value="girl">
+
+		</input>
+		<label id = "sexBoy" for = "boy">Boy</label>
+		<input type = "radio" name="sex" id = "boy" value="boy">
+
+		</input>
+	</div><br/>
+	<button>Add</button>
+	</form>
+	</div>
+	</div>
+
+
+
+
+</body>
+</html>

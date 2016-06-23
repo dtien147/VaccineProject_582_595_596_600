@@ -2,17 +2,18 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-
 router.get('/login', function(req, res) {
-	res.render('login.ect', {});
+    if (req.user === undefined) {
+        res.render('login.ect', {});
+    } else {
+        res.redirect('/');
+    }
 })
 
-router.post('/login',  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-    console.log(req.user);
-});
-
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/parent',
+    failureRedirect: '/login'
+}));
 
 
 module.exports = router;
