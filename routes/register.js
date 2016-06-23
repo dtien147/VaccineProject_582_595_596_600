@@ -3,7 +3,11 @@ var router = express.Router();
 var passport = require('passport');
 
 router.get('/register', function(req, res) {
-    res.render('register.ect', {});
+    if (req.user === undefined) {
+        res.render('register.ect', {});
+    } else {
+        res.redirect('/');
+    }
 });
 
 router.post('/register', function(req, res) {
