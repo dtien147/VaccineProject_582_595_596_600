@@ -3,7 +3,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../style/parent.css">
+	<link rel="stylesheet" href="../style/child.css">
 	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
 
 	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
@@ -12,35 +12,39 @@
 	<script type="text/javascript" src="../script/child.js"></script>
 	<script>
  $(function() {
- 	$( "#datepicker" ).datepicker();
+ 	$( ".datepicker" ).datepicker();
  });
  </script>
 
 </head>
 <body onload="loadGender ('<%- @gender %>')">
-<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse">
+		<ul class="nav navbar-nav">
+		<li class="active"><a href="/parent">Home</a></li>
+		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vaccine <span class="caret"></span></a>
 
-</nav>
+			<ul class = "dropdown-menu">
+				<% if @illnessList?.length : %>
+					<% for illness in @illnessList : %>
+					<li><a href="<%- illness.type %>"> <%- illness.type %> </a></li>
+
+					<% end %>
+				<% end %>
+			</ul>
+		</li>
+		<li><a href="#">Page 2</a></li>
+		<li><a href="#">Page 3</a></li>
+	</ul>
+	</nav>
 <div>
 <h4>Child's information</h4><br/>
 <div >
-	<form  method = "post" action="/child/<%- @child_id %>">
-	<div class = "field">
-		<label > Child's name: </label><br/>
-		<label > Child's birthday: </label><br/>
-		<label > Child's gender: </label><br/>
-		<label> Vaccine: </label>
-	</div>
-	<div class = "info">
-		<input type = "text" id = "child_name" name="child_name" value = "<%- @child_name %>" >
-
-		</input><br/>
-
-		<input type = "text" id = "datepicker" name = "datepicker" value = "<%- @birthday %>" >
-
-		</input><br/>
-
-		<div>
+	<form method = "post" action="/child/<%- @child_id %>">
+		<label  > Child's name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input type = "text" id = "child_name" name="child_name" value = "<%- @child_name %>" ></input><br/>
+		<label class = "field"> Child's birthday:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input id = "datepicker" type = "text" class = "datepicker" name = "datepicker" value = "<%- @birthday %>" ></input><br/>
+		<label class = "field"> Child's gender: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		<label id = "sexGirl" for = "girl">Girl</label>
 		<input type = "radio" name="sex" id = "girl" value="girl">
 
@@ -48,18 +52,63 @@
 		<label id = "sexBoy" for = "boy">Boy</label>
 		<input type = "radio" name="sex" id = "boy" value="boy">
 
-		</input>
-	</div>
-		<ul>
+	</input></br>
+		<button>Update</button>
+	</form>
+</br>
+		<div class = "part">
+			<h4> Vaccination schedule
+			</h4>
+			<form method = "post" action = "/child/<%- @child_id %>/add_note">
+				<label> Date: </label>
+				<input type = "text" class = "datepicker" id="datepickerSchedule" name = "datepickerSchedule"></input>
+					<label> Vaccine: </label>
+				<select name = "vaccinePicker" >
+					  <% if @vaccineList?.length : %>
+					<% for vaccine in @vaccineList : %>
+					<option  id = "vaccinePicker"  value="<%- vaccine.vaccine_name %>"> <%- vaccine.vaccine_name %>
 
-		</ul>
+					</option>
+						<% end %>
+						<% end %>
+				</select>
 
-	</div><br/>
-	<button>Update</button>
-</form>
+					<label> Content: </label>
+				<input id = "txtNoteContent"type = "text" name = "txtNoteContent"></input>
+<button>Create note</button>
+			</form>
+			<% if @notes?.length : %>
+			<table class="table">
+				<tr>
+					<th>Date</th>
+					<th>Vaccine</th>
+					<th>Note</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+
+				<% for note in @notes : %>
+				<tr>
+					<td> <%- note.date %> </td>
+					<td> <%- note.vaccine %> </td>
+					<td> <%- note.noteContent %> </td>
+					<td id = " <%- note._id %>'"class = "status" value = "<%- note.status %>"> <%- note.status %>
+					<button class = "btnDone"onclick="taskDone('<%- @child_id %>', '<%- note._id %>')">  Done</button>
+					<button class = "btnDone"onclick="taskRemove('<%- @child_id %>', '<%- note._id %>')">  Remove</button>
+					</td>
+				</tr>
+				<% end %>
+
+			</table>
+			<% end %>
+
+
+		</div>
+	</div>
+
 	</div>
 	</div>
-</div>
+
 
 
 

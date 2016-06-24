@@ -1,0 +1,26 @@
+.part
+{
+	border-top-color: black;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+#sexBoy
+{
+	color: blue;
+}
+
+#sexGirl
+{
+	color: pink;
+}
+
+.field
+{
+	padding-right: 10.5pt;
+}
+
+.part form input, .part form select
+{
+	margin-right: 15pt;
+}
