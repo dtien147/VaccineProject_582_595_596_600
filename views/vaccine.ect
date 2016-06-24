@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
+
+	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
+	 <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<ul class="nav navbar-nav">
+		<li><a href="/parent">Home</a></li>
+		<li class="active"><a href="/vaccine">Vaccine</a></li>
+		<li><a href="#">Page 2</a></li>
+		<li><a href="#">Page 3</a></li>
+	</ul>
+	</nav>
+	<div class="vaccine_list">
+		<% if @vaccineList.length : %>
+		<table class ="table">
+			<tr>
+				<th>Tên vaccine</th>
+				<th>Công dụng</th>
+				<th>Tác dụng phụ</th>
+			</tr>
+			<% for vaccine in @vaccineList : %>
+			<tr>
+				<td><%- vaccine.name %></td>
+				<td><%- vaccine.effects %></td>
+				<td><%- vaccine.side_effects %></td>
+			</tr>
+			<% end %>
+		</table>
+		<% end %>
+
+	</div>
+</body>
+</html>
