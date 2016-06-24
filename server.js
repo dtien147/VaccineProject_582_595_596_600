@@ -25,9 +25,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
 var ectRenderer = ect({
     watch: true,
     root: __dirname + '/views',
@@ -40,7 +37,6 @@ app.use(function(req, res, next) {
     req.db = db;
     next();
 });
-
 
 var mongo = require('mongodb');
 var monk = require('monk');
