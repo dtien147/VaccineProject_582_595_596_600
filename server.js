@@ -38,8 +38,7 @@ var mongo = require('mongodb');
 var monk = require('monk');
 //var db = monk('localhost:27017/vaccine');
 //var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
-//var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
-var db = monk ('mongodb://sa:123456@ds019960.mlab.com:19960/udpt');
+var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
 //mongodb://<dbuser>:<dbpassword>@ds019960.mlab.com:19960/udpt
 //===============ROUTES===============
 
@@ -48,6 +47,7 @@ app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
 app.use('/', require('./routes/parent'));
 app.use('/', require('./routes/child'));
+app.use('/', require('./routes/vaccine'));
 
 
 //===============PORT=================
