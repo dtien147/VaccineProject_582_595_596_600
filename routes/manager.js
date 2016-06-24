@@ -19,7 +19,7 @@ router.get('/manager', function(req, res) {
 });
 
 router.post('/delete_vaccine', function(req, res) {
-    if (req.user === undefined || req.user['type'] !== 'Manager') {
+    if (req.user !== undefined && req.user['type'] === 'Manager') {
         var vaccines = req.db.get('vaccines');
         vaccines.remove({
             '_id': req.body.id
@@ -36,11 +36,12 @@ router.post('/delete_vaccine', function(req, res) {
         });
     } else {
         res.send(false);
+        console.log(req.user);
     }
 });
 
 router.post('/save_vaccine', function(req, res) {
-    if (req.user === undefined || req.user['type'] !== 'Manager') {
+    if (req.user !== undefined && req.user['type'] === 'Manager') {
         var vaccines = req.db.get('vaccines');
         var vaccine = req.body.vaccine;
         var ObjectID = require('mongodb').ObjectID;
@@ -54,6 +55,7 @@ router.post('/save_vaccine', function(req, res) {
             '_id': vaccine.id
         }, {
             'name': vaccine.name,
+            'effects': vaccine.effects,
             'doses': vaccine.doses,
             'side_effects': vaccine.sideEffects
         }, {
