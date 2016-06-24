@@ -27,7 +27,8 @@ router.post('/register', function(req, res) {
                 users.insert({
                     'email': req.body.email,
                     'name': req.body.name,
-                    'password': req.body.password
+                    'password': req.body.password,
+                    'type': 'Parent'
                 }, function(err, insertedDoc) {
                     if (insertedDoc != null) {
                         passport.authenticate('local')(req, res, function() {

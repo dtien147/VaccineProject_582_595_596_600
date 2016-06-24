@@ -1,0 +1,71 @@
+table, th, td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+.vaccine-cell {
+    vertical-align: middle !important;
+}
+.button-cell {
+    text-align: center;
+}
+#header {
+    background: rgba(0, 0, 0, .5) !important;
+    padding: 10px;
+}
+body {
+    background-image: url('../images/background.png');
+    background-color: #66bbc8;
+}
+nav a {
+    color: #fff;
+    font-weight: 10;
+    font-size: 1em;
+}
+nav div div a:hover {
+    color: #fff !important;
+}
+.nav-button {
+    border: 1px solid #fff;
+}
+.header-row {
+    color: #6fa8dd;
+    background: #fff !important;
+}
+#content {
+    width: 80%;
+    margin: 0px 10%;
+    background: #fff;
+}
+#content-header {
+    background: #006fbe;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.2em;
+}
+#wrapper {
+    padding: 20px;
+}
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    width: 300px;
+}

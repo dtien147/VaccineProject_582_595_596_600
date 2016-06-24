@@ -15,8 +15,9 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.6",
+    "bootstrap": "v4.0.0-alpha.2",
     "jquery": "^2.2.4",
-    "jquery-ui": "^1.11.4"
+    "jquery-ui": "^1.11.4",
+    "angular": "angularjs#^1.5.7"
   }
 }
