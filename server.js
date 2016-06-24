@@ -53,6 +53,7 @@ app.use('/', require('./routes/login'));
 app.use('/', require('./routes/parent'));
 app.use('/', require('./routes/child'));
 app.use('/', require('./routes/manager'));
+app.use('/', require('./routes/vaccine'));
 
 //===============PORT=================
 app.listen(3000, function() {
