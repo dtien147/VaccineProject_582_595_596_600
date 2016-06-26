@@ -42,8 +42,8 @@ var mongo = require('mongodb');
 var monk = require('monk');
 //var db = monk('localhost:27017/vaccine');
 //var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
-var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
-//var db = monk('mongodb://sa:123456@ds019960.mlab.com:19960/udpt');
+//var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
+var db = monk('mongodb://sa:123456@ds019960.mlab.com:19960/udpt');
 //mongodb://<dbuser>:<dbpassword>@ds019960.mlab.com:19960/udpt
 //===============ROUTES===============
 
@@ -104,7 +104,7 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, cb) {
         var users = db.get('users');
         users.findOne({
-            id: profile.id
+            email: profile.emails[0].value
         }, function(err, user) {
 
             if (err) {
@@ -116,14 +116,14 @@ passport.use(new FacebookStrategy({
                 // Tao user moi
                 var newUser = profile._json;
                 users.insert({
-                    'id': newUser.id,
+                    'facebook_id': newUser.id,
                     'name': newUser.name,
                     'email': newUser.email
                 }, function(err, insertedDoc) {
 
                 });
                 var new_user = {
-                    id: newUser.id,
+                    facebook_id: newUser.id,
                     name: newUser.name,
                     email: newUser.email
                 }
@@ -131,8 +131,8 @@ passport.use(new FacebookStrategy({
                 return cb(null, new_user);
             }
             return cb(null, user);
-        });
-    }
+          });
+      }
 ));
 
 //Login: Google
@@ -144,7 +144,7 @@ passport.use(new GoogleStrategy({
     function(accessToken, refreshToken, profile, cb) {
         var users = db.get('users');
         users.findOne({
-            id: profile.id
+            email: profile.emails[0].value
         }, function(err, user) {
 
             if (err) {
@@ -154,9 +154,7 @@ passport.use(new GoogleStrategy({
 
             if (!user) {
                 // Tao user moi
-
                 users.insert({
-                    'id': profile.id,
                     'name': profile.displayName,
                     'email': profile.emails[0].value
                 }, function(err, insertedDoc) {
@@ -164,7 +162,6 @@ passport.use(new GoogleStrategy({
                 });
 
                 var new_user = {
-                    id: profile.id,
                     name: profile.displayName,
                     email: profile.emails[0].value
                 }
