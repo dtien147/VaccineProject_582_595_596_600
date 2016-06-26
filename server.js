@@ -116,20 +116,26 @@ passport.use(new FacebookStrategy({
                 // Tao user moi
                 var newUser = profile._json;
                 users.insert({
-                    'facebook_id': newUser.id,
                     'name': newUser.name,
-                    'email': newUser.email
+                    'email': newUser.email,
+                    'type': 'Parent'
                 }, function(err, insertedDoc) {
 
                 });
+
                 var new_user = {
-                    facebook_id: newUser.id,
                     name: newUser.name,
-                    email: newUser.email
+                    email: newUser.email,
+                    type: 'Parent'
                 }
+
+                console.log(new_user);
+
+                console.log("return new_user");
 
                 return cb(null, new_user);
             }
+            console.log("return user");
             return cb(null, user);
           });
       }
@@ -139,7 +145,8 @@ passport.use(new FacebookStrategy({
 passport.use(new GoogleStrategy({
         clientID: '922565830014-o4ocrqlilbou6g2dt4r5c1vr5lj611j7.apps.googleusercontent.com',
         clientSecret: 'TVH8JAFhjqaJl1fWzZ9dkcty',
-        callbackURL: "http://localhost:3000/auth/google/callback"
+        callbackURL: "http://localhost:3000/auth/google/callback",
+        session: false
     },
     function(accessToken, refreshToken, profile, cb) {
         var users = db.get('users');
@@ -156,29 +163,36 @@ passport.use(new GoogleStrategy({
                 // Tao user moi
                 users.insert({
                     'name': profile.displayName,
-                    'email': profile.emails[0].value
+                    'email': profile.emails[0].value,
+                    'type': 'Parent'
                 }, function(err, insertedDoc) {
 
                 });
 
                 var new_user = {
                     name: profile.displayName,
-                    email: profile.emails[0].value
+                    email: profile.emails[0].value,
+                    type: 'Parent'
                 }
 
                 return cb(null, new_user);
             }
 
+            console.log("return user");
             return cb(null, user);
         });
     }
 ));
 
 passport.serializeUser(function(user, cb) {
+  console.log("bat dau serializeUser");
+  console.log("user email = " + user.email);
     cb(null, user.email);
 });
 
 passport.deserializeUser(function(email, cb) {
+  console.log("bat dau deserializeUser");
+  console.log("email = " + email);
     var users = db.get('users');
     users.findOne({
         email: email
@@ -187,6 +201,8 @@ passport.deserializeUser(function(email, cb) {
             console.log("Login error: Cannot find user");
             return cb(err);
         }
+        console.log("Ket qua deserializeUser:");
+        console.log(user);
         cb(null, user);
     });
 });
