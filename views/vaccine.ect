@@ -8,22 +8,13 @@
 	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
-	 <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
+	<script type="text/javascript" src="../script/datepicker.js"></script>
+	<script type="text/javascript" src="../script/vaccine.js"></script>
+		<script type="text/javascript" src="../parse/parse.min.js"></script>
 
 </head>
-<body>
-	<nav class="navbar navbar-inverse">
-		<ul class="nav navbar-nav">
-		<li><a href="/parent">Home</a></li>
-		<li class="active"><a href="/vaccine">Vaccine</a></li>
-		<li><a href="#">Page 2</a></li>
-		<li><a href="#">Page 3</a></li>
-	</ul>
-	</nav>
+<body onload = "loadPage()">
+<% include '_navigation' %>
 	<div class="vaccine_list">
 		<% if @vaccineList.length : %>
 		<table class ="table">

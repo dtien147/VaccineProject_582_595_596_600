@@ -19,3 +19,8 @@ function modifychild(id)
   location.href = "child/" + id;
 
 }
+
+function loadPage()
+{
+ $("#homeTab").addClass("active");
+}

@@ -6,26 +6,18 @@
 	<link rel="stylesheet" href="style/parent.css">
 	<link rel="stylesheet" type="text/css" href="jquery-ui/themes/smoothness/jquery-ui.min.css">
 
+	<script type="text/javascript" src="parse/parse.min.js"></script>
 	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="script/parent.js"></script>
-	 <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
+	<script type="text/javascript" src="script/datepicker.js"></script>
+
+
 
 </head>
-<body>
-	<nav class="navbar navbar-inverse">
-		<ul class="nav navbar-nav">
-		<li class="active"><a href="/parent">Home</a></li>
-		<li ><a href="/vaccine">Vaccine</a></li>
-		<li><a href="#">Page 2</a></li>
-		<li><a href="#">Page 3</a></li>
-	</ul>
-	</nav>
+<body onload = "loadPage()">
+<% include '_navigation' %>
 	<div class = "childrenList">
 		<md-card-content>
            <% childLoader = (children) -> %>
