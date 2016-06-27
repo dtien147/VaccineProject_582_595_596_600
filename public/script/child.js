@@ -1,5 +1,8 @@
 function loadGender(gender)
 {
+
+   $("#homeTab").addClass("active");
+  
    if (gender === "girl")
    {
      $("[name=sex]").val(["girl"]);
