@@ -42,8 +42,8 @@ var mongo = require('mongodb');
 var monk = require('monk');
 //var db = monk('localhost:27017/vaccine');
 //var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
-var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
-//var db = monk('mongodb://sa:123456@ds019960.mlab.com:19960/udpt');
+//var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
+var db = monk('mongodb://sa:123456@ds019960.mlab.com:19960/udpt');
 //mongodb://<dbuser>:<dbpassword>@ds019960.mlab.com:19960/udpt
 //===============ROUTES===============
 
@@ -53,6 +53,7 @@ app.use('/', require('./routes/login'));
 app.use('/', require('./routes/parent'));
 app.use('/', require('./routes/child'));
 app.use('/', require('./routes/manager'));
+app.use('/', require('./routes/vaccine'));
 
 //===============PORT=================
 app.listen(3000, function() {
@@ -103,7 +104,7 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, cb) {
         var users = db.get('users');
         users.findOne({
-            id: profile.id
+            email: profile.emails[0].value
         }, function(err, user) {
 
             if (err) {
@@ -115,35 +116,42 @@ passport.use(new FacebookStrategy({
                 // Tao user moi
                 var newUser = profile._json;
                 users.insert({
-                    'id': newUser.id,
                     'name': newUser.name,
-                    'email': newUser.email
+                    'email': newUser.email,
+                    'type': 'Parent'
                 }, function(err, insertedDoc) {
 
                 });
+
                 var new_user = {
-                    id: newUser.id,
                     name: newUser.name,
-                    email: newUser.email
+                    email: newUser.email,
+                    type: 'Parent'
                 }
+
+                console.log(new_user);
+
+                console.log("return new_user");
 
                 return cb(null, new_user);
             }
+            console.log("return user");
             return cb(null, user);
-        });
-    }
+          });
+      }
 ));
 
 //Login: Google
 passport.use(new GoogleStrategy({
         clientID: '922565830014-o4ocrqlilbou6g2dt4r5c1vr5lj611j7.apps.googleusercontent.com',
         clientSecret: 'TVH8JAFhjqaJl1fWzZ9dkcty',
-        callbackURL: "http://localhost:3000/auth/google/callback"
+        callbackURL: "http://localhost:3000/auth/google/callback",
+        session: false
     },
     function(accessToken, refreshToken, profile, cb) {
         var users = db.get('users');
         users.findOne({
-            id: profile.id
+            email: profile.emails[0].value
         }, function(err, user) {
 
             if (err) {
@@ -153,34 +161,38 @@ passport.use(new GoogleStrategy({
 
             if (!user) {
                 // Tao user moi
-
                 users.insert({
-                    'id': profile.id,
                     'name': profile.displayName,
-                    'email': profile.emails[0].value
+                    'email': profile.emails[0].value,
+                    'type': 'Parent'
                 }, function(err, insertedDoc) {
 
                 });
 
                 var new_user = {
-                    id: profile.id,
                     name: profile.displayName,
-                    email: profile.emails[0].value
+                    email: profile.emails[0].value,
+                    type: 'Parent'
                 }
 
                 return cb(null, new_user);
             }
 
+            console.log("return user");
             return cb(null, user);
         });
     }
 ));
 
 passport.serializeUser(function(user, cb) {
+  console.log("bat dau serializeUser");
+  console.log("user email = " + user.email);
     cb(null, user.email);
 });
 
 passport.deserializeUser(function(email, cb) {
+  console.log("bat dau deserializeUser");
+  console.log("email = " + email);
     var users = db.get('users');
     users.findOne({
         email: email
@@ -189,8 +201,8 @@ passport.deserializeUser(function(email, cb) {
             console.log("Login error: Cannot find user");
             return cb(err);
         }
+        console.log("Ket qua deserializeUser:");
+        console.log(user);
         cb(null, user);
     });
 });
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help

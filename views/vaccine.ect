@@ -18,36 +18,25 @@
 <body>
 	<nav class="navbar navbar-inverse">
 		<ul class="nav navbar-nav">
-		<li class="active"><a href="/parent">Home</a></li>
-		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vaccine <span class="caret"></span></a>
-
-			<ul class = "dropdown-menu">
-				<% if @illnessList?.length : %>
-					<% for illness in @illnessList : %>
-					<li><a href="<%- illness._id %>"> <%- illness.type %> </a></li>
-
-					<% end %>
-				<% end %>
-			</ul>
-		</li>
+		<li><a href="/parent">Home</a></li>
+		<li class="active"><a href="/vaccine">Vaccine</a></li>
 		<li><a href="#">Page 2</a></li>
 		<li><a href="#">Page 3</a></li>
 	</ul>
 	</nav>
 	<div class="vaccine_list">
-		<h4><%- @illness %></h4><br><br>
 		<% if @vaccineList.length : %>
 		<table class ="table">
 			<tr>
 				<th>Tên vaccine</th>
-				<th>Xuất xứ</th>
-				<th>Phòng bệnh</th>
+				<th>Công dụng</th>
+				<th>Tác dụng phụ</th>
 			</tr>
 			<% for vaccine in @vaccineList : %>
 			<tr>
-				<td><%- vaccine.vaccine_name %></td>
-				<td><%- vaccine.vaccine_country %></td>
-				<td><%- vaccine.vaccine_illness %></td>
+				<td><%- vaccine.name %></td>
+				<td><%- vaccine.effects %></td>
+				<td><%- vaccine.side_effects %></td>
 			</tr>
 			<% end %>
 		</table>

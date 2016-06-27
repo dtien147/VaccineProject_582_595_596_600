@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/parent', function(req, res) {
-    if (req.user === undefined) {
-        res.redirect('/login');
+  if (req.user === undefined || req.user['type'] !== 'Parent') {
+      res.redirect('/');
     } else {
         var db = req.db;
         var users = db.get("users");

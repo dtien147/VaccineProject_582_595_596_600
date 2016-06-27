@@ -46,19 +46,22 @@
 							<td class="vaccine-cell col-md-1">
 								{{vaccineList.indexOf(vaccine) + 1}}
 							</td>
-							<td class="vaccine-cell col-md-6">
+							<td class="vaccine-cell col-md-4">
 								{{vaccine.name}}
+							</td>
+							<td class="vaccine-cell col-md-4">
+								{{vaccine.effects}}
 							</td>
 							<td class="vaccine-cell col-md-1">
 								{{vaccine.doses.length}}
 							</td>
-							<td class="vaccine-cell col-md-3">
+							<td class="vaccine-cell col-md-4">
 								{{vaccine.sideEffects}}
 							</td>
-							<td class="button-cell col-md-3">
+							<td class="button-cell col-md-2">
 								<button type="button" ng-click="editVaccine(vaccine)" class="btn btn-primary">Edit</button>
 							</td>
-							<td class="button-cell col-md-3">
+							<td class="button-cell col-md-2">
 								<button type="button" ng-click="deleteVaccine(vaccine)" class="btn btn-danger">Delete</button>
 							</td>
 						</tr>
@@ -70,6 +73,12 @@
 					<label class="control-label col-md-2">Name:</label>
 					<div class="col-md-4">
 						<input type="text" class="form-control" id="vaccine_name" required ng-model="curVaccine.name">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Effects:</label>
+					<div class="col-md-4">
+						<input type="text" class="form-control" id="vaccine_effects" required ng-model="curVaccine.effects">
 					</div>
 				</div>
 				<div class="form-group">
