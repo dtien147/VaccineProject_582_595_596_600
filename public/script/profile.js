@@ -1,4 +1,11 @@
-function loadPage()
+var module = angular.module('profileFunction', []);
+module.controller('profileCtrl', function($scope)
 {
- $("#profileTab").addClass("active");
-}
+
+
+	$scope.loadPage  =function()
+	{
+		 $(".profileTab").addClass("active");
+	};
+
+});

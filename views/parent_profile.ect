@@ -2,21 +2,24 @@
 
 <html>
 <head>
+	<% include '_title' %>
 	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../style/parent.css">
+	<link rel="stylesheet" href="../style/sidebar.css">
 	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
-	<script type="text/javascript" src="../parse/parse.min.js"></script>
 	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../angular/angular.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../script/datepicker.js"></script>
+	<script type="text/javascript" src="../script/profile.js"></script>
+	<script type="text/javascript" src="../script/logout.js"></script>
 
-<script type="text/javascript" src="../script/logout.js"></script>
 
 </head>
-<body onload = "loadPage()">
+<body ng-app = "profileFunction" ng-controller = "profileCtrl" ng-init = "loadPage()">
 	<% include '_navigation' %>
-<div>
+<div class = "content">
 <h4>User's email: <%- @user %></h4><br/>
 <div>
 <div>
@@ -24,23 +27,13 @@
 	<form  method = "post" action="/profile/changePassword">
 	<div class = "field">
 		<label > Current password: </label><br/>
+		<input type = "password" id = "current_password" name="current_password">	</input> <text> <%- @error %> </text><br/>
 		<label > New password: </label><br/>
+		<input type = "password" id = "new_password" name = "new_password"></input><br/>
 		<label > Confirm password: </label><br/>
-	</div>
-	<div class = "info">
-		<input type = "password" id = "current_password" name="current_password">
-
-		</input><br/>
-
-		<input type = "password" id = "new_password" name = "new_password">
-
-		</input><br/>
-		<input type = "password" id = "confirm_new_password" name = "confirm_new_password">
-
-		</input>
-
+		<input type = "password" id = "confirm_new_password" name = "confirm_new_password"><text> <%- @error1 %> </text></input>
 	</div><br/>
-	<button>Change password</button>
+	<button class = "btn btn-primary">Change password</button>
 	</form>
 </div>
 </div>
