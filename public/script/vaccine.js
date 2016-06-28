@@ -1,4 +1,22 @@
-function loadPage()
+
+var module = angular.module('loadField', []);
+module.controller('ctrl', function($scope)
 {
- $("#vaccineTab").addClass("active");
-}
+    $scope.columns =
+    [
+      {
+        field: "Tên"
+      },
+      {
+        field: "Công dụng"
+      },
+      {
+        field: "Tác dụng phụ"
+      }
+    ];
+
+    $scope.loadPage = function()
+    {
+      $(".vaccineTab").addClass("active");
+    };
+});

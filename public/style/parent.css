@@ -1,46 +1,29 @@
-#sexBoy
-{
-	color: blue;
-}
 
-#sexGirl
-{
-	color: pink;
-}
 
-.field
-{
-	float:left;
-	margin-right: 10pt;
-}
+@media screen and (max-width: 800px) {
 
-.field label
-{
-	padding: 5pt;
-}
-
-.info input, .info label
-{
-	margin: 5pt;
-}
-
-.info
-{
-	float:left;
-}
-
-.childrenList
-{
-	float:left;
-	width: 60%;
-}
-
-.children
-{
-	float: right;
-}
 
  .addChild
 {
-	padding-top: 100pt;
+	margin-left: 0%;
+	margin-right: 0%;
+}
+
+
+
+}
+
+
+
+ .addChild
+{
+	 margin-left: 20%;
+	 margin-right: 30%;
+}
+
+.addChild form button
+{
+  margin-left: 30%;
+  margin-right: 50%;
+  margin-bottom: 10px;
 }

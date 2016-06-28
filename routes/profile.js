@@ -54,22 +54,41 @@ router.post('/profile/changePassword', function(req, res)
       var users = db.get("users");
       var email = req.user['email'];
       var password = req.body.current_password;
-      users.findOne({'email': email, 'password': password}, function(err, result)
+      var new_pass = req.body.new_password;
+      var confirm_pass = req.body.confirm_new_password;
+      if (new_pass!==confirm_pass)
       {
-        if (err)
-        {
-          console.log(err);
-        }
+        res.render("parent_profile.ect",  {error1: "Mật khẩu xác nhận không đúng"});
+      }
 
-        else if (result !== null)
+      else {
+        users.findOne({'email': email, 'password': password}, function(err, result)
         {
-          users.update(
-            { "email": email},
-            { $set: { "password": password}}
-          );
+          if (err)
+          {
+            console.log(err);
+          }
 
-        }
-      });
+          else if (result !== null)
+          {
+            users.update(
+              { "email": email},
+              { $set: { "password": confirm_pass}}
+            );
+
+            res.redirect("/parent/profile");
+
+          }
+
+          else {
+            res.render("parent_profile.ect",  {error: "Mật khẩu không đúng hoặc bạn đang sử dụng tài khoản Google (Facebook)"});
+          }
+
+
+        });
+
+      }
+
 
     }
 });
@@ -77,7 +96,11 @@ router.post('/profile/changePassword', function(req, res)
 router.get('/log_out', function(req, res)
 {
       req.session.destroy();
-      res.redirect("/");
+
+
+
+
+      res.redirect("/login");
 });
 
 

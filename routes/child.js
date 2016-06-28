@@ -27,7 +27,7 @@ router.get('/child/:childId', function(req, res)
     var children = db.get('children');
     var id = req.params.childId;
     var objId = new ObjectID(id);
-    var vaccine = db.get('vaccine');
+    var vaccine = db.get('vaccines');
     var notes = db.get('notes');
 
     children.findOne({"_id": objId}, function (err, result)

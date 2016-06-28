@@ -2,23 +2,26 @@
 
 <html>
 <head>
+	<% include '_title' %>
 	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../style/child.css">
+	<link rel="stylesheet" href="../style/sidebar.css">
 	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
 
 	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../parse/parse.min.js"></script>
+	<script type="text/javascript" src="../angular/angular.min.js"></script>
 	<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../script/datepicker.js"></script>
 	<script type="text/javascript" src="../script/child.js"></script>
+	<script type="text/javascript" src="../script/logout.js"></script>
 
 </head>
-<body onload="loadGender ('<%- @gender %>')">
+<body ng-app="loadField" ng-controller="ctrl">
 	<% include '_navigation' %>
-<div>
+<div class = "content">
 <h4>Child's information</h4><br/>
-<div >
+<div  ng-init="loadGender ('<%- @gender %>')">
 	<form method = "post" action="/child/<%- @child_id %>">
 		<label  > Child's name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		<input type = "text" id = "child_name" name="child_name" value = "<%- @child_name %>" ></input><br/>
@@ -46,7 +49,7 @@
 				<select name = "vaccinePicker" >
 					  <% if @vaccineList?.length : %>
 					<% for vaccine in @vaccineList : %>
-					<option  id = "vaccinePicker"  value="<%- vaccine.name %>"> <%- vaccine.vaccine_name %>
+					<option  id = "vaccinePicker"  value="<%- vaccine.name %>"> <%- vaccine.name %>
 
 					</option>
 						<% end %>
@@ -55,16 +58,12 @@
 
 					<label> Content: </label>
 				<input id = "txtNoteContent"type = "text" name = "txtNoteContent"></input>
-<button>Create note</button>
+<button class = "btn btn-primary">Create note</button>
 			</form>
 			<% if @notes?.length : %>
 			<table class="table">
 				<tr>
-					<th>Date</th>
-					<th>Vaccine</th>
-					<th>Note</th>
-					<th>Status</th>
-					<th></th>
+					<th ng-repeat="column in columns">{{column.field}}</th>
 				</tr>
 
 				<% for note in @notes : %>
@@ -73,8 +72,8 @@
 					<td> <%- note.vaccine %> </td>
 					<td> <%- note.noteContent %> </td>
 					<td id = " <%- note._id %>'"class = "status" value = "<%- note.status %>"> <%- note.status %>
-					<button class = "btnDone"onclick="taskDone('<%- @child_id %>', '<%- note._id %>')">  Done</button>
-					<button class = "btnDone"onclick="taskRemove('<%- @child_id %>', '<%- note._id %>')">  Remove</button>
+					<button class = "btnNote btn btn-success"onclick="taskDone('<%- @child_id %>', '<%- note._id %>')">  Done</button>
+					<button class = "btnNote btn btn-danger"onclick="taskRemove('<%- @child_id %>', '<%- note._id %>')">  Remove</button>
 					</td>
 				</tr>
 				<% end %>

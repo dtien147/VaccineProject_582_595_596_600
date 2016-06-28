@@ -1,26 +1,25 @@
- $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-
-
-function removechild(id)
+var module = angular.module('parentFunction', []);
+module.controller('parentCtrl', function($scope)
 {
-	var data;
-	var link = "./parent/remove_child/" + id;
-	 $.post(link, data, function (res){
+	$scope.removechild = function (id)
+	{
+		var data;
+		var link = "./parent/remove_child/" + id;
+		 $.post(link, data, function (res){
 
-    });
+			});
 
-    location.reload(true);
-}
+			location.reload(true);
+	};
 
-function modifychild(id)
-{
-  location.href = "child/" + id;
+	$scope.modifychild = function(id)
+	{
+		location.href = "child/" + id;
+	};
 
-}
+	$scope.loadPage  =function()
+	{
+		 $(".homeTab").addClass("active");
+	};
 
-function loadPage()
-{
- $("#homeTab").addClass("active");
-}
+});
