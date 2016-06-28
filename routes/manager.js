@@ -57,7 +57,8 @@ router.post('/save_vaccine', function(req, res) {
             'name': vaccine.name,
             'effects': vaccine.effects,
             'doses': vaccine.doses,
-            'side_effects': vaccine.sideEffects
+            'side_effects': vaccine.sideEffects,
+            'girl_only': vaccine.girlOnly
         }, {
             upsert: true
         }, function(err, result) {
