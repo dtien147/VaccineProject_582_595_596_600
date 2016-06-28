@@ -14,6 +14,7 @@ table tr:nth-child(even) {
 }
 .button-cell {
     text-align: center;
+    vertical-align: middle !important;
 }
 #header {
     background: rgba(0, 0, 0, .5) !important;
@@ -22,6 +23,9 @@ table tr:nth-child(even) {
 body {
     background-image: url('../images/background.png');
     background-color: #66bbc8;
+    background-size: fill;
+    overflow:auto;
+    display: table;
 }
 nav a {
     color: #fff;
