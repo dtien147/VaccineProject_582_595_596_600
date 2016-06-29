@@ -12,7 +12,7 @@ Thành viên:
 
 **1312600 - Nguyễn Hoàng Tín**
 
-URL: **...**
+URL: **https://vaccine-reminder.herokuapp.com**
 
 ## Chức năng
 
