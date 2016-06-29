@@ -24,8 +24,7 @@ body {
     background-image: url('../images/background.png');
     background-color: #66bbc8;
     background-size: fill;
-    overflow:auto;
-    display: table;
+    overflow: auto;
 }
 nav a {
     color: #fff;
@@ -34,6 +33,11 @@ nav a {
 }
 nav div div a:hover {
     color: #fff !important;
+}
+#log-out {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 130px;
 }
 .nav-button {
     border: 1px solid #fff;
@@ -72,4 +76,48 @@ nav div div a:hover {
     text-align: left;
     vertical-align: middle;
     width: 300px;
+}
+@media (max-width: 768px) {
+    body {
+        font-size: 10px;
+    }
+    #content {
+        width: 90%;
+        margin: 0px 5%;
+        background: #fff;
+    }
+    .btn {
+        font-size: 8px;
+    }
+    .navbar-brand {
+        font-size: 14px;
+    }
+    .form-control {
+        font-size: 10px;
+    }
+    #log-out {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 85px;
+    }
+    #wrapper {
+        padding: 5px;
+    }
+    #header {
+        padding: 0px;
+    }
+}
+@media (min-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    .btn {
+        font-size: 14px;
+    }
+    .navbar-brand {
+        font-size: 18px;
+    }
+    #wrapper {
+        padding: 20px;
+    }
 }
