@@ -61,7 +61,7 @@
 <button class = "btn btn-primary">Create note</button>
 			</form>
 			<% if @notes?.length : %>
-			<table class="table">
+			<table class = "table table-bordered table-striped">
 				<tr>
 					<th ng-repeat="column in columns">{{column.field}}</th>
 				</tr>
@@ -72,8 +72,8 @@
 					<td> <%- note.vaccine %> </td>
 					<td> <%- note.noteContent %> </td>
 					<td id = " <%- note._id %>'"class = "status" value = "<%- note.status %>"> <%- note.status %>
-					<button class = "btnNote btn btn-success"onclick="taskDone('<%- @child_id %>', '<%- note._id %>')">  Done</button>
-					<button class = "btnNote btn btn-danger"onclick="taskRemove('<%- @child_id %>', '<%- note._id %>')">  Remove</button>
+					<button class = "btnNote btn btn-success" ng-click="taskDone('<%- @child_id %>', '<%- note._id %>')">  Done</button>
+					<button class = "btnNote btn btn-danger"ng-click="taskRemove('<%- @child_id %>', '<%- note._id %>')">  Remove</button>
 					</td>
 				</tr>
 				<% end %>

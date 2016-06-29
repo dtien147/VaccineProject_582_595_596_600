@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<% include '_title' %>
+	<link rel='stylesheet' href='fullcalendar/dist/fullcalendar.css' />
+	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../style/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
+	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../angular/angular.min.js"></script>
+	<script type="text/javascript" src="../moment/min/moment.min.js"></script>
+
+	<script type="text/javascript" src='fullcalendar/dist/fullcalendar.js'></script>
+
+	<script type="text/javascript" src="../script/logout.js"></script>
+	<script type="text/javascript" src="../script/calendar.js"></script>
+</head>
+<body class = "content" ng-app = "calendarFunction" ng-controller = "calendarCtrl" ng-init = "loadPage()">
+	<% include '_navigation' %>
+	<h1>Vaccine calendar </h1>
+	<div  id='calendar'></div>
+	<script>
+	$(document).ready(function() {
+		var MyEvent = <%- JSON.stringify(@data) %>;
+		$('#calendar').fullCalendar({
+			height: 'auto',
+			header:
+				{
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+			events : MyEvent
+	})
+	});
+	</script>
+
+</body>
+</html>
