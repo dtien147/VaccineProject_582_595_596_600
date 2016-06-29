@@ -97,6 +97,7 @@ G1.2 		| G3.1	 		| G5.1			| G5.2			| G5.3 & G5.5	| G7.1			| G8.3
 ------------| ------------- | -------------	| ------------- | ------------- | ------------- | -------------
 Sử dụng git theo gitflow workflow | Những xử lý liên quan đến dữ liệu cần được làm tại server để đảm bảo làm việc trên dữ liệu mới nhất. Đối với những button cần được dùng để post dữ liệu nhưng không nằm trong form, cần bắt sự kiện click button tại client và gọi hàm post để gọi xử lý tại server. Đối với chức năng thay đổi mật khẩu, ta có thể để server kiểm tra tính hợp lệ của mật khẩu hiện tại, sau đó kiểm tra mật khẩu mới với mật khẩu được xác nhận có trùng khớp hay không tại client, nhưng việc kiểm tra tại client được ưu tiên thực hiện trước để tăng tốc độ xử lý. | Thiết kế có sử dụng table, thiết kế với div, có sử dụng navigation, sidebar, có các icon, có sử dụng resposive (navigation bar cho thiết bị có màn hình landscape, sidebar cho thiết bị có màn hình portrait) 	| Sử dụng angular js, bootstrap js | Có làm và thao tác với cơ sở dữ liệu, có làm với kiến trúc MVC với angular js | Người dùng không được phép truy cập vào các trang không có quyền  |   Sử dụng jQuery, CSS framework (boostrap), Front-end framework (angular js 1)
 
+2. Trịnh Xuân Tiến
 
 3. Dương Tiễn
 
