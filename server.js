@@ -109,13 +109,12 @@ var schedule = function(child) {
                     var doseDate = getDoseDate(birthday, doseList[j]);
                     if (doseDate.getYear() === curDate.getYear() &&
                         doseDate.getMonth() === curDate.getMonth() &&
-                        doseDate.getDate() - curDate.getDate() == 7)
+                        doseDate.getDate() - curDate.getDate() === 7)
                         sendMail(child, vaccineList[i], j, doseDate);
                 }
             }
         }
     });
-
 }
 
 var remind = function() {
