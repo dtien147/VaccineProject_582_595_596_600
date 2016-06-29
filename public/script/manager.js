@@ -11,14 +11,13 @@ var newDose = function() {
 }
 
 var newVaccine = function() {
-    var vaccine = {};
+    var vaccine = {};    
     vaccine.doses = [];
-    vaccine.girlOnly = false;
     return vaccine;
 }
 
 app.controller('myCtrl', function($scope, $http) {
-    $scope.vaccineHeader = ['Index', 'Name', 'Effects', 'Dose', 'Side effects', 'Girl only', 'Edit', 'Delete'];
+    $scope.vaccineHeader = ['Index', 'Name', 'Effects', 'Dose', 'Side effects', 'Edit', 'Delete'];
     $scope.doseHeader = ['Index', 'Start', 'End', 'After first dose', 'Edit', 'Delete'];
     $scope.vaccineList = loadVaccines();
     $scope.newVaccine = false;
@@ -85,7 +84,6 @@ app.controller('myCtrl', function($scope, $http) {
     $scope.createDose = function() {
         $scope.curDose = newDose();
         $scope.tempDose = null;
-        $('#doseModal').modal('toggle');
         $('model-title').html('New dose');
     }
 

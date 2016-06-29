@@ -21,7 +21,7 @@
 <% include '_navigation' %>
 	<div class="vaccine_list content">
 		<% if @vaccineList.length : %>
-		<table class ="table">
+		<table class ="table table-bordered table-striped">
 			<tr >
 				<th ng-repeat="column in columns">{{column.field}}</th>
 			</tr>

@@ -65,7 +65,8 @@ router.post('/parent/add_child', function(req, res) {
             'parent-email': req.user['email'],
             'child_name': req.body.child_name,
             'birthday': req.body.datepicker,
-            'gender': req.body.sex
+            'gender': req.body.sex,
+            'isReminded': null
         });
         res.redirect('/parent');
     }
@@ -87,6 +88,29 @@ router.post('/parent/remove_child/:childId', function(req, res) {
             'parent-email': email,
             '_id': objId
         });
+        res.redirect('/parent');
+
+
+    }
+});
+
+router.post('/parent/switch_reminder/:childId/:status', function(req, res) {
+    if (req.user === undefined) {
+        res.redirect('/login');
+    } else {
+        var ObjectID = require('mongodb').ObjectID;
+        var db = req.db;
+        var children = db.get('children');
+        var id = req.params.childId;
+        var status = req.params.status;
+        var objId = new ObjectID(id);
+        var email = req.user['email'];
+        console.log(email);
+
+        children.update(
+          {   'parent-email': email, '_id': objId},
+          { $set: { "isReminded": status}}
+        );
         res.redirect('/parent');
 
 

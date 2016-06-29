@@ -4,14 +4,14 @@
 
 <head>
 	<% include '_title' %>
-		<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="angular-material/angular-material.min.css">
-		<link rel="stylesheet" href="style/manager.css">
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="angular-material/angular-material.min.css">
+	<link rel="stylesheet" href="style/manager.css">
 
-		<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="angular/angular.min.js"></script>
-		<script type="text/javascript" src="script/manager.js"></script>
+	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="script/manager.js"></script>
 		<script type="text/javascript" src="script/logout.js"></script>
 
 
@@ -49,7 +49,7 @@
 							<td class="vaccine-cell col-md-1">
 								{{vaccineList.indexOf(vaccine) + 1}}
 							</td>
-							<td class="vaccine-cell col-md-2">
+							<td class="vaccine-cell col-md-4">
 								{{vaccine.name}}
 							</td>
 							<td class="vaccine-cell col-md-4">
@@ -60,9 +60,6 @@
 							</td>
 							<td class="vaccine-cell col-md-4">
 								{{vaccine.sideEffects}}
-							</td>
-							<td class="vaccine-cell col-md-2">
-								{{vaccine.girlOnly}}
 							</td>
 							<td class="button-cell col-md-2">
 								<button type="button" ng-click="editVaccine(vaccine)" class="btn btn-primary">Edit</button>
@@ -93,15 +90,9 @@
 						<input type="text" class="form-control" id="side_effects" ng-model="curVaccine.sideEffects">
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-md-2">Girl only</label>
-					<div class="col-md-4 my-checkbox">
-						<input type="checkbox" ng-model="curVaccine.girlOnly"/>
-					</div>
-				</div>
 				<div>
 					<div>
-						<button type="button" class="btn btn-info" ng-click="createDose()">Add</button>
+						<button type="button" class="btn btn-info" ng-click="createDose">Add</button>
 					</div>
 					<br>
 					<table class="table table-bordered">
@@ -199,9 +190,7 @@
 				id: v._id,
 				name: v.name,
 				doses: v.doses,
-				effects: v.effects,
-				sideEffects: v.side_effects,
-				girlOnly: v.girl_only
+				sideEffects: v.side_effects
 			};
 			return vaccine;
 		});

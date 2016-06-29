@@ -8,10 +8,11 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var jshare = require('jshare');
 
 
 //===============EXPRESS================
-
+app.use(jshare());
 app.use(express.static('public'));
 app.use(express.static('bower_components'));
 app.use(bodyParser.json());
@@ -54,6 +55,7 @@ app.use('/', require('./routes/parent'));
 app.use('/', require('./routes/child'));
 app.use('/', require('./routes/manager'));
 app.use('/', require('./routes/vaccine'));
+app.use('/', require('./routes/calendar'));
 app.use('/', require('./routes/profile'));
 
 //===============PORT=================

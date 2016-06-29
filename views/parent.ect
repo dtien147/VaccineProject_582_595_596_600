@@ -5,6 +5,7 @@
 	<% include '_title' %>
 
 	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap-toggle/css/bootstrap-toggle.min.css">
 	<link rel="stylesheet" href="style/parent.css">
 	<link rel="stylesheet" href="style/child.css">
 	<link rel="stylesheet" href="style/sidebar.css">
@@ -13,6 +14,7 @@
 	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="angular/angular.min.js"></script>
 	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
 	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="script/parent.js"></script>
 	<script type="text/javascript" src="script/datepicker.js"></script>
@@ -45,31 +47,30 @@
 	</form>
 </div>
 	<div class="childrenList content">
-		<md-card-content>
-           <% childLoader = (children) -> %>
-
-                <md-item>
 
 
-                    <div class="list-group-item">
-                      <a ><h4><%- children.child_name %></h4></a>
-					  <section flex layout="row" layout-align="end center" layout-wrap>
-                      <button id = "btnModifyChild" class="btn btn-info" ng-click="modifychild('<%- children._id %>')">Modify</button>
-                      <button class="btn btn-danger" ng-click = "removechild('<%- children._id %>')">Remove</button>
-                    </section>
-                    </div>
-					<span></span>
+						<% if @children.length : %>
+						<table class ="table table-bordered table-striped">
+							<tr >
+								<th ng-repeat="column in columns">{{column.field}}</th>
+							</tr>
+							<% for child in @children : %>
+							<tr>
+								<td><%- child.child_name %></td>
+								<td><section flex layout="row" layout-align="end center" layout-wrap>
+		                      <button id = "btnModifyChild" class="btn btn-info" ng-click="modifychild('<%- child._id %>')">Modify</button>
+		                      <button class="btn btn-danger" ng-click = "removechild('<%- child._id %>')">Remove</button>
+		                    </section></td>
+								<td>
+									<text><%- child.isReminded %></text>
+									<input id="settings" type="checkbox" checked data-toggle="toggle">
+									<button class="btn btn-success" ng-click = "switchRemind('<%- child._id %>')">OK</button>
+								</td>
 
-
-                </md-item>
-               <% end %>
-
-              <% if @children?.length : %>
-                <% for child in @children : %>
-                    <%- childLoader child %>
-                <% end %>
-              <% end %>
-            </md-card-content>
+							</tr>
+							<% end %>
+						</table>
+						<% end %>
 	</div>
 	</div>
 
