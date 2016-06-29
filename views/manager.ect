@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<% include '_title' %>
+		<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/manager.css">
+
+		<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="angular/angular.min.js"></script>
+		<script type="text/javascript" src="script/manager.js"></script>
+		<script type="text/javascript" src="script/logout.js"></script>
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+	<nav class="navbar" id="header">
+		<div class="container-fluid">
+			<div class="navbar-header col-sm-8 col-xs-10">
+				<a class="navbar-brand" href="#">Vaccine Reminder</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right nav-button col-sm-2 col-xs-2" id="log-out">
+				<li><a href="/log_out"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div id="content">
+		<div id="content-header">
+			Vaccine List
+		</div>
+		<div id="wrapper">
+			<div ng-show="newVaccine === false" class="ng-hide">
+				<div>
+					<button type="button" class="btn btn-info" ng-click=createVaccine()>Add</button>
+				</div>
+				<br>
+				<div>
+					<table class="table table-bordered">
+						<tr class="header-row">
+							<td>
+								Index
+							</td>
+							<td>
+								Name
+							</td>
+							<td class="hidden-xs">
+								Effects
+							</td>
+							<td class="hidden-xs">
+								Dose
+							</td>
+							<td class="hidden-xs">
+								Side effects
+							</td>
+							<td class="hidden-xs">
+								Girl only
+							</td>
+							<td>
+								Edit
+							</td>
+							<td>
+								Delete
+							</td>
+						</tr>
+						<tr ng-repeat="vaccine in vaccineList">
+							<td class="vaccine-cell col-sm-1">
+								{{vaccineList.indexOf(vaccine) + 1}}
+							</td>
+							<td class="vaccine-cell col-sm-2">
+								{{vaccine.name}}
+							</td>
+							<td class="vaccine-cell col-sm-4 hidden-xs">
+								{{vaccine.effects}}
+							</td>
+							<td class="vaccine-cell col-sm-1 hidden-xs">
+								{{vaccine.doses.length}}
+							</td>
+							<td class="vaccine-cell col-sm-4 hidden-xs">
+								{{vaccine.sideEffects}}
+							</td>
+							<td class="vaccine-cell col-sm-2 hidden-xs">
+								{{vaccine.girlOnly}}
+							</td>
+							<td class="button-cell col-sm-2">
+								<button type="button" ng-click="editVaccine(vaccine)" class="btn btn-primary">Edit</button>
+							</td>
+							<td class="button-cell col-sm-2">
+								<button type="button" ng-click="deleteVaccine(vaccine)" class="btn btn-danger">Delete</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<form ng-show="newVaccine" class="ng-hide form-horizontal" ng-submit="saveVaccine()">
+				<div class="form-group">
+					<label class="control-label col-sm-2">Name:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="vaccine_name" required ng-model="curVaccine.name">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Effects:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="vaccine_effects" required ng-model="curVaccine.effects">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Side effects:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="side_effects" ng-model="curVaccine.sideEffects">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Girl only</label>
+					<div class="col-sm-4 my-checkbox">
+						<input type="checkbox" ng-model="curVaccine.girlOnly" />
+					</div>
+				</div>
+				<div>
+					<div>
+						<button type="button" class="btn btn-info" ng-click="createDose()">Add</button>
+					</div>
+					<br>
+					<table class="table table-bordered">
+						<tr class="header-row">
+							<td>
+								Index
+							</td>
+							<td>
+								Start
+							</td>
+							<td>
+								End
+							</td>
+							<td class="hidden-xs">
+								After first dose
+							</td>
+							<td>
+								Edit
+							</td>
+							<td>
+								Delete
+							</td>
+						</tr>
+						<tr ng-repeat="dose in curVaccine.doses">
+							<td class="vaccine-cell col-sm-1 col-xs-1">
+								{{curVaccine.doses.indexOf(dose) + 1}}
+							</td>
+							<td class="vaccine-cell col-sm-3 col-xs-3">
+								{{dose.start.value + ' ' + dose.start.unit}}
+							</td>
+							<td class="vaccine-cell col-sm-3 col-xs-3">
+								{{dose.end.value + ' ' + dose.end.unit}}
+							</td>
+							<td class="vaccine-cell col-sm-2 col-xs-1 hidden-xs">
+								{{dose.afterFirst}}
+							</td>
+							<td class="button-cell col-sm-1 col-xs-1">
+								<button type="button" ng-click="editDose(dose)" class="btn btn-primary">Edit</button>
+							</td>
+							<td class="button-cell col-sm-1 col-xs-1">
+								<button type="button" ng-click="deleteDose(dose)" class="btn btn-danger">Delete</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="form-group ">
+					<div class="col-sm-2 col-sm-offset-5 col-xs-offset-4">
+						<button type="submit" class="btn btn-info">Save</button>
+						<button type="button" class="btn btn-default" ng-click="cancelEditVaccine()">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<form id="doseModal" class="modal fade" role="dialog" ng-submit="saveDose()">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="model-title">Dose</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row form-group">
+						<div class="col-sm-6">
+							<input type="text" class="form-control col-sm-2" ng-model="curDose.start.value" name="start" required placeholder="Start">
+						</div>
+						<div class="col-sm-6">
+							<select class="form-control col-sm-2" ng-model="curDose.start.unit">
+								<option>Hour</option>
+								<option>Day</option>
+								<option>Month</option>
+								<option>Year</option>
+							</select>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-sm-6">
+							<input type="text" class="form-control col-sm-2" ng-model="curDose.end.value" name="end" required placeholder="End">
+						</div>
+						<div class="col-sm-6">
+							<select class="form-control col-sm-2" ng-model="curDose.end.unit">
+								<option>Hour</option>
+								<option>Day</option>
+								<option>Month</option>
+								<option>Year</option>
+							</select>
+						</div>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" ng-model="curDose.afterFirst">Given after first dose</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelEditDose()">Cancel</button>
+				</div>
+			</div>
+
+		</div>
+	</form>
+</body>
+<script>
+	function loadVaccines() {
+		var vaccines = <%- JSON.stringify(@vaccineList) %>;
+
+		return vaccines.map(function(v, index) {
+			var vaccine = {
+				id: v._id,
+				name: v.name,
+				doses: v.doses,
+				effects: v.effects,
+				sideEffects: v.side_effects,
+				girlOnly: v.girl_only
+			};
+			return vaccine;
+		});
+	}
+</script>
+
+</html>
