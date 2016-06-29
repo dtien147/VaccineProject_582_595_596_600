@@ -138,7 +138,7 @@ var remind = function() {
 };
 
 //===============PORT=================
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log('now listening on http://localhost:3000');
     remind();
 });
