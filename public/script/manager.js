@@ -17,9 +17,7 @@ var newVaccine = function() {
     return vaccine;
 }
 
-app.controller('myCtrl', function($scope, $http) {
-    $scope.vaccineHeader = ['Index', 'Name', 'Effects', 'Dose', 'Side effects', 'Girl only', 'Edit', 'Delete'];
-    $scope.doseHeader = ['Index', 'Start', 'End', 'After first dose', 'Edit', 'Delete'];
+app.controller('myCtrl', function($scope, $http) {    
     $scope.vaccineList = loadVaccines();
     $scope.newVaccine = false;
     $scope.tempVaccine = null;
