@@ -174,7 +174,7 @@ passport.use(new LocalStrategy({
 passport.use(new FacebookStrategy({
         clientID: '115652165524930',
         clientSecret: 'fccf4fc2fc8318f8332c124b385f3d19',
-        callbackURL: "https://vaccine-reminder.herokuapp.com/auth/facebook/callback",
+        callbackURL: "http://localhost:3000/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'email'],
         session: false
     },
@@ -222,7 +222,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GoogleStrategy({
         clientID: '922565830014-o4ocrqlilbou6g2dt4r5c1vr5lj611j7.apps.googleusercontent.com',
         clientSecret: 'TVH8JAFhjqaJl1fWzZ9dkcty',
-        callbackURL: "https://vaccine-reminder.herokuapp.com/auth/google/callback",
+        callbackURL: "http://localhost:3000/auth/google/callback",
         session: false
     },
     function(accessToken, refreshToken, profile, cb) {
