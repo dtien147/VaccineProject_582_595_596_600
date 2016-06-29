@@ -85,6 +85,8 @@ Video demo
 
 ![](add_vaccine.png)
 
+![](calendar.png)
+
 ## Data Schema
 ![](data_schema.png)
 
@@ -102,3 +104,8 @@ G1.2        | G3.1          | G5.1          | G5.2          | G5.3 & G5.5   | G5
 ------------| ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 Sử dụng git theo gitflow workflow | Sử dụng jQuery AJAX ở Register để kiểm tra thông tin đăng ký của người dùng để thông báo cho người dùng biết thông tin sai mà không cần phải reload lại trang, tạo sự thoải mái cho người dùng. Dùng AngularJS 1 để tải tất cả dữ liệu cần thiết cho trang manager vào lần đầu tiên và dùng AngularJS 1 Ajax để xử lý việc thêm và cập nhật thông tin vaccine, giúp người dùng thao tác nhanh hơn không phải reload lại trang khi cần chuyển đổi giữa các màn hình (Xem danh sách vaccine, thêm/cập nhật vacxin, thêm/cập nhật mũi tiêm của vacxin)  | Thiết kế responsive | Sử dụng AngularJS 1 | Có làm và thao tác CSDL | Lập trình AJAX với các callback success, error  |   AngularJS 1, Bootstrap 3, jQuery
 
+4. Nguyễn Hoàng Tín
+
+G1.2        | G3.1          | G5.1          | G5.2          | G5.3 & G5.5   | G5.4          | G7.1         | G8.3
+------------| ------------- | ------------- | ------------- | ------------- | ------------- | -------------| -------------
+Sử dụng Git theo Gitflow Workflow | Thực hiện xử lý đăng nhập và thiết lập lịch tiêm vaccine tại server để đảm bảo thông tin đang xử lý luôn là cập nhật nhất, đồng thời tăng tính bảo mật cho web. Màn hình calendar có dữ liệu cố định nên sẽ được server xử lý và gửi một lần duy nhất trong lần client truy cập vào calendar để tăng tốc độ.  | Thiết kế với div, Thiết kế nâng cao với navigation, header, footer, sidebar và thiết kế responsive | - Sử dụng MVC và module và angularjs | Có làm và thao tác CSDL | Lập trình AJAX với các callback success, error  |  Người dùng không được phép vào các trang không có quyền và Chống SQL Injection |AngularJS 1, Bootstrap 3, jQuery
