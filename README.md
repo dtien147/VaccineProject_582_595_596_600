@@ -91,21 +91,21 @@ Video demo
 ![](data_schema.png)
 
 ## Chuẩn đầu ra đã đạt được
-1. Bùi Phạm Thiên Thư
+-Bùi Phạm Thiên Thư
 
 G1.2 		| G3.1	 		| G5.1			| G5.2			| G5.3 & G5.5	| G7.1			| G8.3
 ------------| ------------- | -------------	| ------------- | ------------- | ------------- | -------------
 Sử dụng git theo gitflow workflow | Những xử lý liên quan đến dữ liệu cần được làm tại server để đảm bảo làm việc trên dữ liệu mới nhất. Đối với những button cần được dùng để post dữ liệu nhưng không nằm trong form, cần bắt sự kiện click button tại client và gọi hàm post để gọi xử lý tại server. Đối với chức năng thay đổi mật khẩu, ta có thể để server kiểm tra tính hợp lệ của mật khẩu hiện tại, sau đó kiểm tra mật khẩu mới với mật khẩu được xác nhận có trùng khớp hay không tại client, nhưng việc kiểm tra tại client được ưu tiên thực hiện trước để tăng tốc độ xử lý. | Thiết kế có sử dụng table, thiết kế với div, có sử dụng navigation, sidebar, có các icon, có sử dụng resposive (navigation bar cho thiết bị có màn hình landscape, sidebar cho thiết bị có màn hình portrait) 	| Sử dụng angular js, bootstrap js | Có làm và thao tác với cơ sở dữ liệu, có làm với kiến trúc MVC với angular js | Người dùng không được phép truy cập vào các trang không có quyền  |   Sử dụng jQuery, CSS framework (boostrap), Front-end framework (angular js 1)
 
-2. Trịnh Xuân Tiến
+-Trịnh Xuân Tiến
 
-3. Dương Tiễn
+-Dương Tiễn
 
 G1.2        | G3.1          | G5.1          | G5.2          | G5.3 & G5.5   | G5.4          | G8.3
 ------------| ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 Sử dụng git theo gitflow workflow | Sử dụng jQuery AJAX ở Register để kiểm tra thông tin đăng ký của người dùng để thông báo cho người dùng biết thông tin sai mà không cần phải reload lại trang, tạo sự thoải mái cho người dùng. Dùng AngularJS 1 để tải tất cả dữ liệu cần thiết cho trang manager vào lần đầu tiên và dùng AngularJS 1 Ajax để xử lý việc thêm và cập nhật thông tin vaccine, giúp người dùng thao tác nhanh hơn không phải reload lại trang khi cần chuyển đổi giữa các màn hình (Xem danh sách vaccine, thêm/cập nhật vacxin, thêm/cập nhật mũi tiêm của vacxin)  | Thiết kế responsive | Sử dụng AngularJS 1 | Có làm và thao tác CSDL | Lập trình AJAX với các callback success, error  |   AngularJS 1, Bootstrap 3, jQuery
 
-4. Nguyễn Hoàng Tín
+-Nguyễn Hoàng Tín
 
 G1.2        | G3.1          | G5.1          | G5.2          | G5.3 & G5.5   | G5.4          | G7.1         | G8.3
 ------------| ------------- | ------------- | ------------- | ------------- | ------------- | -------------| -------------
