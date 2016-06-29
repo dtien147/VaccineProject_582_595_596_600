@@ -1,0 +1,29 @@
+
+
+@media screen and (max-width: 800px) {
+
+
+ .addChild
+{
+	margin-left: 0%;
+	margin-right: 0%;
+}
+
+
+
+}
+
+
+
+ .addChild
+{
+	 margin-left: 20%;
+	 margin-right: 30%;
+}
+
+.addChild form button
+{
+  margin-left: 30%;
+  margin-right: 50%;
+  margin-bottom: 10px;
+}

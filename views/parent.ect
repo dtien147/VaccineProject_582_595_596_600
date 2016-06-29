@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<% include '_title' %>
+
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style/parent.css">
+	<link rel="stylesheet" href="style/child.css">
+	<link rel="stylesheet" href="style/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="jquery-ui/themes/smoothness/jquery-ui.min.css">
+
+	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="script/parent.js"></script>
+	<script type="text/javascript" src="script/datepicker.js"></script>
+  <script type="text/javascript" src="script/logout.js"></script>
+
+
+</head>
+<body ng-app = "parentFunction" ng-controller = "parentCtrl" ng-init = "loadPage()">
+<% include '_navigation' %>
+<div>
+
+
+
+	<div class="addChild content">
+	<form method = "post" action="/parent/add_child">
+		<label  > Child's name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input type = "text" id = "child_name" name="child_name" value = "<%- @child_name %>" ></input><br/>
+		<label class = "field"> Child's birthday:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input id = "datepicker" type = "text" class = "datepicker" name = "datepicker" value = "<%- @birthday %>" ></input><br/>
+		<label class = "field"> Child's gender: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<label id = "sexGirl" for = "girl">Girl</label>
+		<input type = "radio" name="sex" id = "girl" value="girl">
+
+		</input>
+		<label id = "sexBoy" for = "boy">Boy</label>
+		<input type = "radio" name="sex" id = "boy" value="boy">
+		<button class = "btn btn-primary">Add</button>
+	</input></br>
+
+	</form>
+</div>
+	<div class="childrenList content">
+		<md-card-content>
+           <% childLoader = (children) -> %>
+
+                <md-item>
+
+
+                    <div class="list-group-item">
+                      <a ><h4><%- children.child_name %></h4></a>
+					  <section flex layout="row" layout-align="end center" layout-wrap>
+                      <button id = "btnModifyChild" class="btn btn-info" ng-click="modifychild('<%- children._id %>')">Modify</button>
+                      <button class="btn btn-danger" ng-click = "removechild('<%- children._id %>')">Remove</button>
+                    </section>
+                    </div>
+					<span></span>
+
+
+                </md-item>
+               <% end %>
+
+              <% if @children?.length : %>
+                <% for child in @children : %>
+                    <%- childLoader child %>
+                <% end %>
+              <% end %>
+            </md-card-content>
+	</div>
+	</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<% include '_title' %>
+	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
+ <link rel="stylesheet" href="../style/sidebar.css">
+
+	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="../angular/angular.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../script/datepicker.js"></script>
+	<script type="text/javascript" src="../script/vaccine.js"></script>
+	<script type="text/javascript" src="../script/logout.js"></script>
+
+
+</head>
+<body ng-app="loadField" ng-controller="ctrl" ng-init = "loadPage()">
+<% include '_navigation' %>
+	<div class="vaccine_list content">
+		<% if @vaccineList.length : %>
+		<table class ="table">
+			<tr >
+				<th ng-repeat="column in columns">{{column.field}}</th>
+			</tr>
+			<% for vaccine in @vaccineList : %>
+			<tr>
+				<td><%- vaccine.name %></td>
+				<td><%- vaccine.effects %></td>
+				<td><%- vaccine.side_effects %></td>
+			</tr>
+			<% end %>
+		</table>
+		<% end %>
+
+	</div>
+</body>
+</html>
