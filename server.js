@@ -43,7 +43,7 @@ var mongo = require('mongodb');
 var monk = require('monk');
 //var db = monk('localhost:27017/vaccine');
 //var db = monk('sa:123456@ds023613.mlab.com:23613/vaccine')
-var db = monk ('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
+var db = monk('sa:123456@ds021771.mlab.com:21771/udpt_vaccine');
 //var db = monk('mongodb://sa:123456@ds019960.mlab.com:19960/udpt');
 //mongodb://<dbuser>:<dbpassword>@ds019960.mlab.com:19960/udpt
 //===============ROUTES===============
@@ -58,16 +58,90 @@ app.use('/', require('./routes/vaccine'));
 app.use('/', require('./routes/calendar'));
 app.use('/', require('./routes/profile'));
 
+//===============REMINDER=================
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport('smtps://superpigudpt%40gmail.com:tien1234@smtp.gmail.com');
+
+var sendMail = function(child, vaccine, doseIndex, doseDate) {
+    var mailOptions = {
+        from: '"Vaccine Reminder" <reminder@vaccine.com>',
+        to: child['parent-email'],
+        subject: child.child_name + ' should be vaccinated on ' + doseDate,
+        html: '<div>Vaccine:' + vaccine.name +
+            '</div><div>Dose:' + (doseIndex + 1) + '</div>'
+    };
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Message sent: ' + info.response);
+        }
+    });
+}
+
+var getDoseDate = function(childBirthday, dose) {
+    var date = new Date(childBirthday.getTime());
+    if (dose.unit === 'Hour') {
+        date.setHours(date.getHours() + dose.value);
+    } else if (dose.unit === 'Day') {
+        date.setDate(date.getDate() + dose.value);
+    } else if (dose.unit === 'Month') {
+        date.setMonth(date.getMonth() + dose.value);
+    } else if (dose.unit == 'Year') {
+        date.setYear(date.getYear() + dose.value);
+    }
+    return date;
+}
+
+var schedule = function(child) {
+    var parts = child.birthday.split('/');
+    var birthday = new Date(parts[2], parts[0] - 1, parts[1]);
+    var vaccineDB = db.get('vaccines');
+    var curDate = new Date();
+    vaccineDB.find({}, function(err, vaccineList) {
+        if (err) {
+            console.log(err);
+        } else {
+            for (var i = 0; i < vaccineList.length; i++) {
+                var doseList = vaccineList[i].doses;
+                for (var j = 0; j < doseList.length; j++) {
+                    var doseDate = getDoseDate(birthday, doseList[j]);
+                    if (doseDate.getYear() === curDate.getYear() &&
+                        doseDate.getMonth() === curDate.getMonth() &&
+                        doseDate.getDate() - curDate.getDate() === 7)
+                        sendMail(child, vaccineList[i], j, doseDate);
+                }
+            }
+        }
+    });
+}
+
+var remind = function() {
+    var cron = require('cron');
+    var cronJob = cron.job('0 0 0 * * *', function() {
+        var childDB = db.get('children');
+        childDB.find({}, function(err, childList) {
+            if (err) {
+                console.log(err);
+            } else {
+                for (var i = 0; i < childList.length; i++) {
+                    if (childList[i].isReminded === "on") {
+                        schedule(childList[i]);
+                    }
+                }
+
+            }
+        });
+    });
+    cronJob.start();
+};
+
 //===============PORT=================
 app.listen(3000, function() {
     console.log('now listening on http://localhost:3000');
-})
-
-/*
-mongo ds023613.mlab.com:23613/vaccine -u sa -p 123456
-*/
-
-
+    remind();
+});
 //==================PASSPORT==============
 passport.use(new LocalStrategy({
         usernameField: 'email',
@@ -140,8 +214,8 @@ passport.use(new FacebookStrategy({
             }
             console.log("return user");
             return cb(null, user);
-          });
-      }
+        });
+    }
 ));
 
 //Login: Google
@@ -188,14 +262,14 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.serializeUser(function(user, cb) {
-  console.log("bat dau serializeUser");
-  console.log("user email = " + user.email);
+    console.log("bat dau serializeUser");
+    console.log("user email = " + user.email);
     cb(null, user.email);
 });
 
 passport.deserializeUser(function(email, cb) {
-  console.log("bat dau deserializeUser");
-  console.log("email = " + email);
+    console.log("bat dau deserializeUser");
+    console.log("email = " + email);
     var users = db.get('users');
     users.findOne({
         email: email
