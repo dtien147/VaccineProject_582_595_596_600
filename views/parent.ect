@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<% include '_title' %>
+
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap-toggle/css/bootstrap-toggle.min.css">
+	<link rel="stylesheet" href="style/parent.css">
+	<link rel="stylesheet" href="style/child.css">
+	<link rel="stylesheet" href="style/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="jquery-ui/themes/smoothness/jquery-ui.min.css">
+
+	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="script/parent.js"></script>
+	<script type="text/javascript" src="script/datepicker.js"></script>
+  <script type="text/javascript" src="script/logout.js"></script>
+
+
+</head>
+<body ng-app = "parentFunction" ng-controller = "parentCtrl" ng-init = "loadPage()">
+<% include '_navigation' %>
+<div>
+
+
+
+	<div class="addChild content">
+	<form method = "post" action="/parent/add_child">
+		<label  > Child's name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input type = "text" id = "child_name" name="child_name" value = "<%- @child_name %>" ></input><br/>
+		<label class = "field"> Child's birthday:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input id = "datepicker" type = "text" class = "datepicker" name = "datepicker" value = "<%- @birthday %>" ></input><br/>
+		<label class = "field"> Child's gender: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<label id = "sexGirl" for = "girl">Girl</label>
+		<input type = "radio" name="sex" id = "girl" value="girl">
+
+		</input>
+		<label id = "sexBoy" for = "boy">Boy</label>
+		<input type = "radio" name="sex" id = "boy" value="boy">
+		<button class = "btn btn-primary">Add</button>
+	</input></br>
+
+	</form>
+</div>
+	<div class="childrenList content">
+
+
+						<% if @children.length : %>
+						<table class ="table table-bordered table-striped">
+							<tr >
+								<th ng-repeat="column in columns">{{column.field}}</th>
+							</tr>
+							<% for child in @children : %>
+							<tr>
+								<td><%- child.child_name %></td>
+								<td><section flex layout="row" layout-align="end center" layout-wrap>
+		                      <button id = "btnModifyChild" class="btn btn-info" ng-click="modifychild('<%- child._id %>')">Modify</button>
+		                      <button class="btn btn-danger" ng-click = "removechild('<%- child._id %>')">Remove</button>
+		                    </section></td>
+								<td>
+									<text><%- child.isReminded %></text>
+									<input id="settings" type="checkbox" checked data-toggle="toggle">
+									<button class="btn btn-success" ng-click = "switchRemind('<%- child._id %>')">OK</button>
+								</td>
+
+							</tr>
+							<% end %>
+						</table>
+						<% end %>
+	</div>
+	</div>
+
+
+
+
+</body>
+</html>

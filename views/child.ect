@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<% include '_title' %>
+	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../style/child.css">
+	<link rel="stylesheet" href="../style/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/themes/smoothness/jquery-ui.min.css">
+
+	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../angular/angular.min.js"></script>
+	<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../script/datepicker.js"></script>
+	<script type="text/javascript" src="../script/child.js"></script>
+	<script type="text/javascript" src="../script/logout.js"></script>
+
+</head>
+<body ng-app="loadField" ng-controller="ctrl">
+	<% include '_navigation' %>
+<div class = "content">
+<h4>Child's information</h4><br/>
+<div  ng-init="loadGender ('<%- @gender %>')">
+	<form method = "post" action="/child/<%- @child_id %>">
+		<label  > Child's name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input type = "text" id = "child_name" name="child_name" value = "<%- @child_name %>" ></input><br/>
+		<label class = "field"> Child's birthday:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input id = "datepicker" type = "text" class = "datepicker" name = "datepicker" value = "<%- @birthday %>" ></input><br/>
+		<label class = "field"> Child's gender: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<label id = "sexGirl" for = "girl">Girl</label>
+		<input type = "radio" name="sex" id = "girl" value="girl">
+
+		</input>
+		<label id = "sexBoy" for = "boy">Boy</label>
+		<input type = "radio" name="sex" id = "boy" value="boy">
+
+	</input></br>
+		<button>Update</button>
+	</form>
+</br>
+		<div class = "part">
+			<h4> To do list
+			</h4>
+			<form method = "post" action = "/child/<%- @child_id %>/add_note">
+				<label> Date: </label>
+				<input type = "text" class = "datepicker" id="datepickerSchedule" name = "datepickerSchedule"></input>
+					<label> Vaccine: </label>
+				<select name = "vaccinePicker" >
+					  <% if @vaccineList?.length : %>
+					<% for vaccine in @vaccineList : %>
+					<option  id = "vaccinePicker"  value="<%- vaccine.name %>"> <%- vaccine.name %>
+
+					</option>
+						<% end %>
+						<% end %>
+				</select>
+
+					<label> Content: </label>
+				<input id = "txtNoteContent"type = "text" name = "txtNoteContent"></input>
+<button class = "btn btn-primary">Create note</button>
+			</form>
+			<% if @notes?.length : %>
+			<table class = "table table-bordered table-striped">
+				<tr>
+					<th ng-repeat="column in columns">{{column.field}}</th>
+				</tr>
+
+				<% for note in @notes : %>
+				<tr>
+					<td> <%- note.date %> </td>
+					<td> <%- note.vaccine %> </td>
+					<td> <%- note.noteContent %> </td>
+					<td id = " <%- note._id %>'"class = "status" value = "<%- note.status %>"> <%- note.status %>
+					<button class = "btnNote btn btn-success" ng-click="taskDone('<%- @child_id %>', '<%- note._id %>')">  Done</button>
+					<button class = "btnNote btn btn-danger"ng-click="taskRemove('<%- @child_id %>', '<%- note._id %>')">  Remove</button>
+					</td>
+				</tr>
+				<% end %>
+
+			</table>
+			<% end %>
+
+
+		</div>
+	</div>
+
+	</div>
+	</div>
+
+
+
+
+</body>
+</html>
