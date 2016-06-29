@@ -83,7 +83,7 @@ Chức năng **nâng cao* [ ]**:
 
 ![](add_vaccine.png)
 
-## Date Schema
+## Data Schema
 ![](data_schema.png)
 
 ## Chuẩn đầu ra đã đạt được
