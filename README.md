@@ -57,6 +57,8 @@ Chức năng **nâng cao* [ ]**:
 * [x] Chức năng của quản lý
     * [x] Thêm thông tin vaccine (Thành phần, công dụng, tác dụng phụ)
 
+Video demo
+![Video Walkthrough](demo.gif)
 
 ## Wireframe
 ![](main.png)
